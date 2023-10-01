@@ -1,0 +1,45 @@
+@options
+@packages
+-encoding
+'UTF-8'
+-protected
+-source
+'1.7'
+-sourcepath
+'/home/mathyan/Documents/project/Scheduler/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/mathyan/Documents/project/Scheduler/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'Scheduler 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/7/docs/api' '/home/mathyan/Documents/project/Scheduler/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'Scheduler 1.0-SNAPSHOT API'
+com.mathyan
+/home/mathyan/Documents/project/Scheduler/src/main/java = 1693920911156
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/javadoc.sh = 1693921367331
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/element-list = 1693922100974
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/overview-tree.html = 1693922100987
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/allclasses-index.html = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/allpackages-index.html = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/module-search-index.js = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/package-search-index.js = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/type-search-index.js = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/member-search-index.js = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/tag-search-index.js = 1693922100994
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/index-all.html = 1693922100997
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/index.html = 1693922101001
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/help-doc.html = 1693922101001
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/stylesheet.css = 1693922101004
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/script.js = 1693922101004
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/search.js = 1693922101004
+/home/mathyan/Documents/project/Scheduler/target/site/apidocs/jquery-ui.overrides.css = 1693922101007
