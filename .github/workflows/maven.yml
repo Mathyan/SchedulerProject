@@ -33,4 +33,33 @@ jobs:
     - name: Create Release and Upload Javadocs
       run: |
         export GH_TOKEN=${{ secrets.GH_PAT }}
-        gh release create ${{ github.ref }} javadocs.zip --title "Release ${{ github.ref }}" --notes "Release notes for ${{ github.ref }}"
+        
+        # Extract the branch or tag name from github.ref value
+        REF_NAME=$(echo "${{ github.ref }}" | sed -e 's/refs\/heads\///' -e 's/refs\/tags\///')
+        
+        # Use a naming convention for branch-based releases
+        if [[ ${{ github.event_name }} == 'push' ]]; then
+          RELEASE_NAME="branch-$REF_NAME-$(date +'%Y%m%d%H%M%S')"
+        else
+          RELEASE_NAME=$REF_NAME
+        fi
+        
+        gh release create "$RELEASE_NAME" javadocs.zip --title "Release $RELEASE_NAME" --notes "Release notes for $RELEASE_NAME"
+    - name: Push Javadocs to GitHub Pages
+      run: |
+        # Configure Git
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        
+        # Clone the GitHub Pages repository using the token
+        git clone https://${{ secrets.GH_PAT }}@github.com/Mathyan/mathyan.github.io.git gh-pages
+        
+        # Copy the generated Javadocs to the desired directory
+        cp -r target/site/apidocs/* gh-pages/
+        
+        # Commit and push the changes
+        cd gh-pages
+        git add .
+        git commit -m "Update Javadocs"
+        git push
+        
