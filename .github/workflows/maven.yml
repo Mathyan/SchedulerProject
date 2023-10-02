@@ -16,7 +16,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +28,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B javadoc:javadoc --file pom.xml
+    - name: Zip Javadocs
+      run: zip -r javadocs.zip target/site/apidocs/
+    - name: Create Release and Upload Javadocs
+      run: |
+        export GH_TOKEN=${{ secrets.GH_PAT }}
+        gh release create ${{ github.ref }} javadocs.zip --title "Release ${{ github.ref }}" --notes "Release notes for ${{ github.ref }}"
