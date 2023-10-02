@@ -46,5 +46,16 @@ public class Model {
         return persons;
     }
 
+    /**
+     * Removes a person from the list of persons.
+     * <p>
+     * If the person is not in the list, the list is not modified.
+     * <p>
+     * @param person the person to be removed
+     */
+    public void removePerson(Person person){
+        persons.remove(person);
+    }
+
 
 }
