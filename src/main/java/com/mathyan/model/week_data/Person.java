@@ -26,7 +26,6 @@ public class Person implements Serializable {
      *
      * @param name       the name of the person
      * @param surname    the surname of the person
-     * @param weekNumber the week number of the person
      */
     public Person(String name , Optional<String> surname) {
         this.name = name;
