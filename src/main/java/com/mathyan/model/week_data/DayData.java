@@ -35,6 +35,7 @@ public class DayData implements Serializable {
     /**
      * The end time of the work day.
      * <p>
+     * 
      * @see #getStartTime()
      */
     private LocalDateTime endTime;
@@ -44,6 +45,7 @@ public class DayData implements Serializable {
      * <p>
      * All durations are Duration objects.
      * <p>
+     * 
      * @see #getStartTime()
      */
     private Duration durationOfWork;
@@ -65,13 +67,14 @@ public class DayData implements Serializable {
     }
 
     /**
-     *Empty constructor for DayData.
+     * Empty constructor for DayData.
      */
     public DayData() {
     }
 
     /**
      * Gets the day number of the week (1-7).
+     * 
      * @return the day number of the week (1-7)
      */
     public Integer getDayNumber() {
@@ -83,6 +86,7 @@ public class DayData implements Serializable {
      * <p>
      * All points in time are LocalDateTime objects.
      * <p>
+     * 
      * @return the start time of the work day
      */
     public LocalDateTime getStartTime() {
@@ -102,6 +106,7 @@ public class DayData implements Serializable {
      * <p>
      * All durations are Duration objects.
      * <p>
+     * 
      * @see #getStartTime()
      * @return the duration of work on the day
      */
@@ -112,6 +117,7 @@ public class DayData implements Serializable {
     /**
      * Sets the day number of the week (1-7).
      * <p>
+     * 
      * @param dayNumber the day number of the week (1-7)
      */
     public void setDayNumber(Integer dayNumber) {
@@ -124,6 +130,7 @@ public class DayData implements Serializable {
      * If the end time is already set, the duration of work is calculated from
      * the start time and end time.
      * <p>
+     * 
      * @see #getStartTime()
      * @param startTime the start time of the work day
      */
@@ -140,6 +147,7 @@ public class DayData implements Serializable {
      * If the start time is already set, the duration of work is calculated from
      * the start time and end time.
      * <p>
+     * 
      * @see #getStartTime()
      * @param endTime the end time of the work day
      */
@@ -159,6 +167,7 @@ public class DayData implements Serializable {
      * If the end time is already set, the start time is calculated from the
      * end time and duration of work.
      * <p>
+     * 
      * @see #getStartTime()
      * @param durationOfWork the duration of work on the day
      */
@@ -173,6 +182,7 @@ public class DayData implements Serializable {
 
     /**
      * Simple string representation of the DayData object.
+     * 
      * @return a string representation of the DayData object
      */
     @Override
@@ -185,6 +195,7 @@ public class DayData implements Serializable {
     /**
      * Calculates the duration of work from the start time and end time.
      * <p>
+     * 
      * @param startTime the start time of the work day
      * @param endTime   the end time of the work day
      * @return the duration of work on the day
@@ -192,5 +203,29 @@ public class DayData implements Serializable {
     private Duration calculateDurationOfWork(LocalDateTime startTime,
             LocalDateTime endTime) {
         return Duration.between(startTime, endTime);
+    }
+
+    /**
+     * Returns a string representation of LocalDateTime object
+     * in the format HH:MM.
+     *
+     * @return string representation of LocalDateTime object
+     */
+    private String localDateTimeToString(LocalDateTime localDateTime) {
+        return String.format("%02d:%02d", localDateTime.getHour(),
+                localDateTime.getMinute());
+    }
+
+    /**
+     * Prints day data object into a table format.
+     *
+     * @return string representation of day data object
+     */
+    public String toTableString() {
+
+        int hours = (int) durationOfWork.toHours();
+        String hoursString = String.format("%02d", hours);
+        return String.format("%-6s%-6s%-3s%", localDateTimeToString(startTime),
+                localDateTimeToString(endTime), hoursString);
     }
 }

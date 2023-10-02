@@ -19,7 +19,7 @@ public class Person implements Serializable {
     private String surname;
     private int id;
     private static int idCounter = 0;
-    private Map<Integer, Set<DayData>> weekData;
+    private Map<Integer,ArrayList<DayData>> weekData;
 
     /**
      * Constructs a Person object with the given name, surname and week number.
@@ -104,7 +104,7 @@ public class Person implements Serializable {
      *
      * @return the week data of the person
      */
-    public Map<Integer, Set<DayData>> getWeekData() {
+    public Map<Integer, ArrayList<DayData>> getWeekData() {
         return weekData;
     }
 
@@ -113,7 +113,7 @@ public class Person implements Serializable {
      *
      * @param weekData the week data of the person
      */
-    public void setWeekData(Map<Integer, Set<DayData>> weekData) {
+    public void setWeekData(Map<Integer, ArrayList<DayData>> weekData) {
         this.weekData = weekData;
     }
 
