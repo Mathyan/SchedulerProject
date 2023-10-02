@@ -2,6 +2,7 @@ package com.mathyan;
 
 import com.mathyan.controller.Controller;
 import com.mathyan.model.Model;
+import com.mathyan.view.FontWidth;
 import com.mathyan.view.View;
 
 /**
@@ -15,6 +16,7 @@ public class App {
      * @param args The command line arguments passed to the application.
      */
     public static void main(String[] args) {
+        FontWidth.calculateFontWidth();
         Model model = new Model();
         View view = new View();
         Controller controller = new Controller(model, view);

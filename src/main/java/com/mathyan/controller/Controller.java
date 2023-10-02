@@ -1,6 +1,8 @@
 package com.mathyan.controller;
 
+
 import com.mathyan.model.Model;
+import com.mathyan.view.FontWidth;
 import com.mathyan.view.View;
 
 public class Controller {

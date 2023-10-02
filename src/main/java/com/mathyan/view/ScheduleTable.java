@@ -1,38 +1,51 @@
 package com.mathyan.view;
 
-import javax.swing.JTable;
+import java.awt.Component;
+import java.awt.Dimension;
 
-/**
- * This class represents the schedule table of the application.
- * <p>
- * The schedule table contains the schedule of the user
- * with headers for the days of the week.
- */
-public class ScheduleTable extends JTable{
-    private static String[] columnNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+public class ScheduleTable extends JTable {
+    private static String[] columnNames = {
+        "Name", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+    };
     private String[][] tableData;
     private Integer week;
 
-    /**
-     * Constructs a ScheduleTable object with the given table data and week.
-     *
-     * @param tableData the table data
-     * @param week      the week number
-     */
     public ScheduleTable(String[][] tableData, Integer week) {
         super(tableData, columnNames);
         this.tableData = tableData;
         this.week = week;
+        this.setPreferredSize(new Dimension(FontWidth.getFontWidth() * 8, 600));
+        this.setRowHeight(20);
+
+        // Set a custom cell renderer only for the first column (Name)
+        getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                    boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                int width = FontWidth.getFontWidth();
+                table.getColumnModel().getColumn(column).setPreferredWidth(width);
+                return c;
+            }
+        });
     }
 
-    /**
-     * Updates the table data.
-     */
     public void updateTableData(String[][] tableData, Integer week) {
         this.tableData = tableData;
         this.week = week;
         this.repaint();
     }
 
+    public String[][] getTableData() {
+        return tableData;
+    }
 
+    public Integer getWeek() {
+        return week;
+    }
 }

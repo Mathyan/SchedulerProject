@@ -1,6 +1,7 @@
 package com.mathyan.view;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 /**
  * This class represents the view of the application.
@@ -42,6 +43,7 @@ public class View {
      */
     public void addMainPanel() {
         MainPanel mainPanel = new MainPanel();
+        mainPanel.setPreferredSize(new Dimension(1000, 600));
         windowFrame.add(mainPanel, BorderLayout.CENTER);
     }
 
