@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.mathyan","l":"App"},{"p":"com.mathyan.controller","l":"Controller"},{"p":"com.mathyan.model.week_data","l":"DayData"},{"p":"com.mathyan.model","l":"Model"},{"p":"com.mathyan.view","l":"View"},{"p":"com.mathyan.model.week_data","l":"WeekSchedule"}];updateSearchResults();

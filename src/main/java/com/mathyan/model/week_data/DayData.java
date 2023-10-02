@@ -20,9 +20,32 @@ import java.time.LocalDateTime;
  * serialized and deserialized.
  */
 public class DayData implements Serializable {
+    /**
+     * The day number of the week (1-7).
+     */
     private Integer dayNumber;
+
+    /**
+     * The start time of the work day.
+     * <p>
+     * All points in time are LocalDateTime objects.
+     */
     private LocalDateTime startTime;
+
+    /**
+     * The end time of the work day.
+     * <p>
+     * @see #getStartTime()
+     */
     private LocalDateTime endTime;
+
+    /**
+     * The duration of work on the day.
+     * <p>
+     * All durations are Duration objects.
+     * <p>
+     * @see #getStartTime()
+     */
     private Duration durationOfWork;
 
     /**

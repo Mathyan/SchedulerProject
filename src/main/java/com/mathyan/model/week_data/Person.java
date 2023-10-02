@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
+ * This class represents the data for a single person.
+ * <p>
+ * The name and surname are the name and surname of the person.
+ * The id is the unique identifier of the person.
+ * The week data is a map of week numbers to sets of DayData objects.
+ * The weeks is a set of Week objects.
+ * <p>
  * This class implements the Serializable interface so that it can be
  * serialized and deserialized.
  */
@@ -13,7 +20,6 @@ public class Person implements Serializable {
     private int id;
     private static int idCounter = 0;
     private Map<Integer, Set<DayData>> weekData;
-    private Set<Week> weeks;
 
     /**
      * Constructs a Person object with the given name, surname and week number.
@@ -26,7 +32,6 @@ public class Person implements Serializable {
         this.name = name;
         this.id = idCounter++;
         this.weekData = new HashMap<>();
-        this.weeks = new HashSet<>();
         if (surname.isPresent()) {
             this.surname = surname.get();
         } else {
@@ -113,33 +118,5 @@ public class Person implements Serializable {
         this.weekData = weekData;
     }
 
-    /**
-     * Gets the weeks of the person.
-     *
-     * @return the weeks of the person
-     */
-    public Set<Week> getWeeks() {
-        return weeks;
-    }
-
-    /**
-     * Sets the weeks of the person.
-     *
-     * @param weeks the weeks of the person
-     */
-    public void setWeeks(Set<Week> weeks) {
-        this.weeks = weeks;
-    }
-
-    /**
-     * Adds person to the week.
-     *
-     * @param week the week to be added
-     */
-    public void addWeek(Integer week){
-        if (week != null) {
-            weeks.add(new Week(week));
-        }
-    }
 
 }
