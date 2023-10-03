@@ -12,6 +12,7 @@ import javax.swing.WindowConstants;
 import com.mathyan.controller.ButtonEventListener;
 import com.mathyan.controller.UpdateEvent;
 import com.mathyan.model.week_data.Person;
+import com.mathyan.controller.EditPersonWindowClosedListener;
 
 /**
  * This class represents the window frame of the application.
@@ -21,6 +22,7 @@ import com.mathyan.model.week_data.Person;
 public class WindowFrame extends JFrame{
     private ToolBar toolBar;
     private MainPanel mainPanel;
+    private transient EditPersonWindowClosedListener editPersonWindowClosedListener;
 
     /**
      * Constructs a WindowFrame object.
@@ -117,9 +119,23 @@ public class WindowFrame extends JFrame{
             @Override
             public void windowClosed(WindowEvent e) {
                 setFocusableWindowState(true);
+                if (editPersonWindowClosedListener != null) {
+                editPersonWindowClosedListener.onEditPersonWindowClosed();
+                System.out.println("Window closed");
+            }
             }
         });
     }
+
+
+
+public void setEditPersonWindowClosedListener(EditPersonWindowClosedListener listener) {
+    this.editPersonWindowClosedListener = listener;
+}
+
+public void removeEditPersonWindowClosedListener() {
+    this.editPersonWindowClosedListener = null;
+}
 
 }
 

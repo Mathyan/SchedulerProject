@@ -11,6 +11,7 @@ import java.awt.event.ItemEvent;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import com.mathyan.model.week_data.DayData;
 import com.mathyan.model.week_data.Person;
 
 /**
@@ -46,7 +47,7 @@ public class EditPersonWindow extends JDialog {
 	 */
 	public EditPersonWindow(JFrame mainWindow, List<Person> persons, Integer week) {
 		super(mainWindow, "Edit Person", true);
-		this.persons = new ArrayList<>(persons);
+		this.persons = persons;
 		this.currentWeek = week;
 
 		setPreferredSize(new Dimension(500, 500));
@@ -376,6 +377,11 @@ public class EditPersonWindow extends JDialog {
 	 * @return the person
 	 */
 	private Person findOrCreatePerson(String name, String surname) {
+		if (persons.isEmpty()) {
+			Person newPerson = new Person(name, surname);
+			persons.add(newPerson);
+			return newPerson;
+		}
 		for (Person person : persons) {
 			if (person.getName().equals(name) && Objects.equals(person.getSurname(), surname)) {
 				return person;
@@ -384,8 +390,6 @@ public class EditPersonWindow extends JDialog {
 
 		Person newPerson = new Person(name, surname);
 		persons.add(newPerson);
-		personComboBox.addItem(newPerson.toString());
-		personComboBox.setSelectedIndex(personComboBox.getItemCount() - 1);
 		return newPerson;
 	}
 
@@ -403,11 +407,23 @@ public class EditPersonWindow extends JDialog {
 			person.getWeekData().put(weekNumberInt, new ArrayList<>());
 		}
 
-		IntStream.range(0, dayTimeTextFields.length)
-				.forEach(i -> {
-					person.getWeekData().get(weekNumberInt).get(i).setStartTime(startTimes.get(i));
-					person.getWeekData().get(weekNumberInt).get(i).setEndTime(endTimes.get(i));
-				});
+		if (person.getWeekData().get(weekNumberInt).isEmpty()) {
+			IntStream.range(0, dayTimeTextFields.length)
+					.forEach(i -> {
+						DayData dayTime = new DayData();
+						dayTime.setStartTime(startTimes.get(i));
+						dayTime.setEndTime(endTimes.get(i));
+						person.getWeekData().get(weekNumberInt).add(dayTime);
+					});
+		} else {
+			IntStream.range(0, dayTimeTextFields.length)
+					.forEach(i -> {
+						person.getWeekData().get(weekNumberInt).get(i).setStartTime(startTimes.get(i));
+						person.getWeekData().get(weekNumberInt).get(i).setEndTime(endTimes.get(i));
+					});
+		}
+		personComboBox.addItem(person.toString());
+		personComboBox.setSelectedIndex(personComboBox.getItemCount() - 1);
 	}
 
 	/**

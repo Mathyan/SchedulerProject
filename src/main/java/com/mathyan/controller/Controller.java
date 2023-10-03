@@ -11,7 +11,7 @@ import com.mathyan.view.View;
  * The controller is responsible for handling events from the view and updating
  * the model.
  */
-public class Controller {
+public class Controller implements EditPersonWindowClosedListener{
     private Model model;
     private View view;
     private int currentWeek;
@@ -26,6 +26,7 @@ public class Controller {
         this.model = model;
         this.view = view;
         this.currentWeek = 1;
+        this.view.setEditPersonWindowClosedListener(this); // register this object as an edit person window closed listener
         model.setCurrentWeek(currentWeek);
         view.setCurrentWeek(currentWeek);
     }
@@ -116,4 +117,11 @@ public class Controller {
         this.currentWeek = currentWeek;
     }
 
+    /**
+     * Updates the data in the table when edit person window is closed.
+     */
+    @Override
+    public void onEditPersonWindowClosed() {
+        model.fireUpdateEvent();
+    }
 }

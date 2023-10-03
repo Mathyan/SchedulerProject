@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  * Gson to serialize and deserialize LocalTime objects.
  */
 public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     /**
      * Overrides the write method of the TypeAdapter interface.
@@ -23,6 +23,7 @@ public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
     public void write(JsonWriter out, LocalTime value) throws IOException {
         out.value(formatter.format(value));
     }
+
     /**
      * Overrides the read method of the TypeAdapter interface.
      */

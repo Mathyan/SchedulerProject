@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JFileChooser;
 
 import com.mathyan.controller.ButtonEventListener;
+import com.mathyan.controller.Controller;
 import com.mathyan.controller.FileEvent;
 import com.mathyan.controller.UpdateEvent;
 import com.mathyan.model.week_data.Person;
@@ -21,6 +22,7 @@ import com.mathyan.model.week_data.Person;
  * <p>
  */
 public class View {
+
 
     WindowFrame windowFrame;
 
@@ -132,6 +134,17 @@ public class View {
     public void openEditPersonMenu(List<Person> persons, int currentWeek) {
         windowFrame.openEditPersonMenu(persons, currentWeek);
     }
+
+    /**
+     * Sets the edit person window closed listener.
+     *
+     * @param controller the controller
+     */
+    public void setEditPersonWindowClosedListener(Controller controller) {
+        windowFrame.setEditPersonWindowClosedListener(controller);
+    }
+
+
 
 
 }

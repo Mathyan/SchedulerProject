@@ -6,44 +6,44 @@
       "1": [
         {
           "dayNumber": 1,
-          "startTime": "2022-01-03T08:00:00",
-          "endTime": "2022-01-03T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 2,
-          "startTime": "2022-01-04T08:00:00",
-          "endTime": "2022-01-04T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 3,
-          "startTime": "2022-01-05T08:00:00",
-          "endTime": "2022-01-05T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 4,
-          "startTime": "2022-01-06T08:00:00",
-          "endTime": "2022-01-06T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 5,
-          "startTime": "2022-01-07T08:00:00",
-          "endTime": "2022-01-07T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 6,
-          "startTime": "2022-01-08T08:00:00",
-          "endTime": "2022-01-08T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 7,
-          "startTime": "2022-01-09T08:00:00",
-          "endTime": "2022-01-09T16:00:00",
+          "startTime": "08:00:00",
+          "endTime": "16:00:00",
           "durationOfWork": "PT8H"
         }
       ]
@@ -56,44 +56,44 @@
       "1": [
         {
           "dayNumber": 1,
-          "startTime": "2022-01-03T09:00:00",
-          "endTime": "2022-01-03T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 2,
-          "startTime": "2022-01-04T09:00:00",
-          "endTime": "2022-01-04T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 3,
-          "startTime": "2022-01-05T09:00:00",
-          "endTime": "2022-01-05T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 4,
-          "startTime": "2022-01-06T09:00:00",
-          "endTime": "2022-01-06T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 5,
-          "startTime": "2022-01-07T09:00:00",
-          "endTime": "2022-01-07T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 6,
-          "startTime": "2022-01-08T09:00:00",
-          "endTime": "2022-01-08T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 7,
-          "startTime": "2022-01-09T09:00:00",
-          "endTime": "2022-01-09T17:00:00",
+          "startTime": "09:00:00",
+          "endTime": "17:00:00",
           "durationOfWork": "PT8H"
         }
       ]
@@ -106,44 +106,44 @@
       "1": [
         {
           "dayNumber": 1,
-          "startTime": "2022-01-03T10:00:00",
-          "endTime": "2022-01-03T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 2,
-          "startTime": "2022-01-04T10:00:00",
-          "endTime": "2022-01-04T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 3,
-          "startTime": "2022-01-05T10:00:00",
-          "endTime": "2022-01-05T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 4,
-          "startTime": "2022-01-06T10:00:00",
-          "endTime": "2022-01-06T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 5,
-          "startTime": "2022-01-07T10:00:00",
-          "endTime": "2022-01-07T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 6,
-          "startTime": "2022-01-08T10:00:00",
-          "endTime": "2022-01-08T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         },
         {
           "dayNumber": 7,
-          "startTime": "2022-01-09T10:00:00",
-          "endTime": "2022-01-09T18:00:00",
+          "startTime": "10:00:00",
+          "endTime": "18:00:00",
           "durationOfWork": "PT8H"
         }
       ]

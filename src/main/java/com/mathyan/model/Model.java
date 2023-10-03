@@ -98,7 +98,7 @@ public class Model {
 	/**
 	 * Fires an update event.
 	 */
-	private void fireUpdateEvent() {
+	public void fireUpdateEvent() {
 		if (updateEventListener != null) {
 			updateEventListener.update( new UpdateEvent(this, this.currentWeek, DataManipulation.getAllPersonsWeekDataInTableFormat(persons, currentWeek)));
 		}
