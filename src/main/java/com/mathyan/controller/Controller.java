@@ -1,7 +1,5 @@
 package com.mathyan.controller;
 
-import java.io.File;
-
 import com.mathyan.model.Model;
 import com.mathyan.view.View;
 
@@ -69,17 +67,16 @@ public class Controller {
 
                     @Override
                     public void nextWeek(ButtonEvent e) {
-                        model.nextWeek(e);
+                        model.nextWeek();
                     }
 
                     @Override
                     public void previousWeek(ButtonEvent e) {
-                        model.previousWeek(e);
+                        model.previousWeek();
                     }
 
                     @Override
                     public void editWeek(ButtonEvent e) {
-                        model.nextWeek(e);
                     }
                 });
 
