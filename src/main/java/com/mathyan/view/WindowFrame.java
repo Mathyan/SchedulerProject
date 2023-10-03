@@ -108,10 +108,10 @@ public class WindowFrame extends JFrame{
      *
      ** @param persons the list of persons
      */
-    public void openEditPersonMenu(List<Person> persons) {
+    public void openEditPersonMenu(List<Person> persons, int currentWeek) {
         setFocusableWindowState(false);
     
-        EditPersonWindow editPersonWindow = new EditPersonWindow(this, persons);
+        EditPersonWindow editPersonWindow = new EditPersonWindow(this, persons, currentWeek);
         editPersonWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         editPersonWindow.addWindowListener(new WindowAdapter() {
             @Override
@@ -122,3 +122,4 @@ public class WindowFrame extends JFrame{
     }
 
 }
+

@@ -203,4 +203,13 @@ public class MainPanel extends JPanel {
         this.weekList = weekList;
     }
 
+    /**
+     * Gets the current week.
+     *
+     * @return the current week
+     */
+    public int getCurrentWeek() {
+        return scheduleTable.getWeek();
+    }
+
 }

@@ -12,6 +12,12 @@ public class FontWidth {
     private static int calculatedFontWidth = 0;
 
     /**
+     * Private constructor to prevent instantiation.
+     */
+    private FontWidth() {
+    }
+
+    /**
      * This method returns the width of the font.
      */
     public static int getFontWidth() {

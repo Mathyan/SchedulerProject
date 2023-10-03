@@ -22,20 +22,28 @@ public class Person implements Serializable {
     private Map<Integer,ArrayList<DayData>> weekData;
 
     /**
-     * Constructs a Person object with the given name, surname and week number.
+     * Constructs a Person object with the given name, surname.
      *
      * @param name       the name of the person
      * @param surname    the surname of the person
      */
-    public Person(String name , Optional<String> surname) {
+    public Person(String name , String surname) {
         this.name = name;
+        this.surname = surname;
         this.id = idCounter++;
         this.weekData = new HashMap<>();
-        if (surname.isPresent()) {
-            this.surname = surname.get();
-        } else {
-            this.surname = "";
-        }
+    }
+
+    /**
+     * Constructs a Person object with the given name and blank surname.
+     *
+     * @param name       the name of the person
+     */
+    public Person(String name){
+        this.name = name;
+        this.surname = "";
+        this.id = idCounter++;
+        this.weekData = new HashMap<>();
     }
 
     /**
@@ -128,6 +136,14 @@ public class Person implements Serializable {
                 System.out.println(dayData.toTableString());
             }
         }
+    }
+
+    /**
+     * Override of toString method.
+     */
+    @Override
+    public String toString() {
+        return name + " " + surname;
     }
 
 

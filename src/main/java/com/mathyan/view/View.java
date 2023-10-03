@@ -129,8 +129,8 @@ public class View {
      *
      * @param persons the list of persons
      */
-    public void openEditPersonMenu(List<Person> persons) {
-        windowFrame.openEditPersonMenu(persons);
+    public void openEditPersonMenu(List<Person> persons, int currentWeek) {
+        windowFrame.openEditPersonMenu(persons, currentWeek);
     }
 
 

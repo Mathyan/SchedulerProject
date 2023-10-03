@@ -81,7 +81,7 @@ public class Controller {
 
                     @Override
                     public void editWeek(ButtonEvent e) {
-                        view.openEditPersonMenu(model.getPersons());
+                        view.openEditPersonMenu(model.getPersons(), model.getCurrentWeek());
                     }
                 });
 

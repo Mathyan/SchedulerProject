@@ -148,5 +148,14 @@ public class Model {
 		return weekListCalculated;
 	}
 
+	/**
+	 * Gets the current week.
+	 * <p>
+	 * @return the current week
+	 */
+	public int getCurrentWeek() {
+		return currentWeek;
+	}
+
 
 }
