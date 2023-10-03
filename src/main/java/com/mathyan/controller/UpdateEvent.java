@@ -20,7 +20,7 @@ public class UpdateEvent extends EventObject{
      * @param source    the source of the event
      * @param week      the week number
      * @param tableData the table data
-     * @param weekList2
+     * @param weekList  the week list
      */
     public UpdateEvent(Object source, Integer week, String[][] tableData, List<Integer> weekList) {
         super(source);

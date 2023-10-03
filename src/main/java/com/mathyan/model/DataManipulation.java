@@ -207,11 +207,10 @@ public class DataManipulation {
     }
 
     /**
-     * Converts JSON string to list of persons.
+     * Converts JSON string into a list of persons.
+     * And binds the list to the event.
      * <p>
-     * Uses the GSON library to convert the JSON string to list of persons.
-     * 
-     * @param json the JSON string to be converted
+     * @param e the file event
      * @return the list of persons
      */
     public static List<Person> openFile(FileEvent e) {
