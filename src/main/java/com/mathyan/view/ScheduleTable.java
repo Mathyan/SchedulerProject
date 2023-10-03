@@ -17,8 +17,8 @@ public class ScheduleTable extends JTable {
         super(tableData, columnNames);
         this.tableData = tableData;
         this.week = week;
-        this.setPreferredSize(new Dimension(FontWidth.getFontWidth() * 8, 600));
-        this.setRowHeight(20);
+        this.setPreferredSize(new Dimension((FontWidth.getFontWidth() + 20) * 8, 600));
+        this.setRowHeight(40);
 
         for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
             getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {

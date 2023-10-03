@@ -10,17 +10,39 @@ import java.util.EventListener;
  */
 public interface ButtonEventListener extends EventListener {
 
-    /**
-     * This method is called when the save button is pressed.
-     *
-     * @param e the button event
-     */
-    void saveFile(ButtonEvent e);
+	/**
+	 * This method is called when the save button is pressed.
+	 *
+	 * @param e the button event
+	 */
+	void saveFile(ButtonEvent e);
 
-    /**
-     * This method is called when the open button is pressed.
-     *
-     * @param e the button event
-     */
-    void openFile(ButtonEvent e);
+	/**
+	 * This method is called when the open button is pressed.
+	 *
+	 * @param e the button event
+	 */
+	void openFile(ButtonEvent e);
+
+	/**
+	 * This method is called when the next week button is pressed.
+	 *
+	 * @param e the button event
+	 */
+	void nextWeek(ButtonEvent e);
+
+	/**
+	 * This method is called when the previous week button is pressed.
+	 *
+	 * @param e the button event
+	 */
+	void previousWeek(ButtonEvent e);
+
+	/**
+	 * This method is called when the edit week button is pressed.
+	 *
+	 * @param e the button event
+	 */
+	void editWeek(ButtonEvent e);
+
 }

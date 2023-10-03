@@ -12,6 +12,7 @@ import java.awt.Dimension;
 public class View {
 
     WindowFrame windowFrame;
+
     /**
      * Constructs a View object.
      */
@@ -28,8 +29,16 @@ public class View {
         windowFrame = new WindowFrame();
         windowFrame.setTitle("Scheduler Project");
         windowFrame.setLayout(new BorderLayout());
-        }
+        windowFrame.setVisible(true);
+    }
 
+    /**
+     * Repacks and repaints the window.
+     */
+    public void refresh() {
+        windowFrame.pack();
+        windowFrame.repaint();
+    }
     /**
      * Adds the toolbar to the window.
      */
@@ -46,8 +55,5 @@ public class View {
         mainPanel.setPreferredSize(new Dimension(1000, 600));
         windowFrame.add(mainPanel, BorderLayout.CENTER);
     }
-
-
-
 
 }

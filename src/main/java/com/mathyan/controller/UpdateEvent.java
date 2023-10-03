@@ -23,4 +23,24 @@ public class UpdateEvent extends EventObject{
         this.week = week;
         this.tableData = tableData;
     }
+
+    /**
+     * Gets the week number.
+     *
+     * @return the week number
+     */
+
+    public Integer getWeek() {
+        return week;
+    }
+
+    /**
+     * Gets the table data.
+     *
+     * @return the table data
+     */
+
+    public String[][] getTableData() {
+        return tableData;
+    }
 }
