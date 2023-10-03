@@ -99,8 +99,9 @@ public class Model {
 	 * Fires an update event.
 	 */
 	public void fireUpdateEvent() {
+		updateWeekList();
 		if (updateEventListener != null) {
-			updateEventListener.update( new UpdateEvent(this, this.currentWeek, DataManipulation.getAllPersonsWeekDataInTableFormat(persons, currentWeek)));
+			updateEventListener.update( new UpdateEvent(this, this.currentWeek, DataManipulation.getAllPersonsWeekDataInTableFormat(persons, currentWeek), this.weekList));
 		}
 	}
 
@@ -134,7 +135,7 @@ public class Model {
 	 * Gets valid week numbers from the list of persons.
 	 * @return the current week list
 	 */
-	public List<Integer> getWeekList() {
+	public List<Integer> updateWeekList() {
 		List<Integer> weekListCalculated = new ArrayList<>();
 		for (Person person : persons) {
 			for (Integer weekNumber : person.getWeekData().keySet()) {

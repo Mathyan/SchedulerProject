@@ -2,7 +2,6 @@ package com.mathyan.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.IntStream;
 
 import javax.swing.*;
@@ -129,7 +128,6 @@ public class EditPersonWindow extends JDialog {
 		weekNumberTextField = new JTextField();
 		editPersonPanel.add(weekNumberTextField, c);
 
-		// Add fields for each day of the week
 		String[] daysOfWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
 		dayTimeTextFields = new JTextField[daysOfWeek.length][2];
 		for (int i = 0; i < daysOfWeek.length; i++) {
@@ -377,17 +375,11 @@ public class EditPersonWindow extends JDialog {
 	 * @return the person
 	 */
 	private Person findOrCreatePerson(String name, String surname) {
-		if (persons.isEmpty()) {
-			Person newPerson = new Person(name, surname);
-			persons.add(newPerson);
-			return newPerson;
-		}
 		for (Person person : persons) {
-			if (person.getName().equals(name) && Objects.equals(person.getSurname(), surname)) {
+			if (person.getName().equals(name) && person.getSurname().equals(surname)) {
 				return person;
 			}
 		}
-
 		Person newPerson = new Person(name, surname);
 		persons.add(newPerson);
 		return newPerson;
@@ -411,6 +403,7 @@ public class EditPersonWindow extends JDialog {
 			IntStream.range(0, dayTimeTextFields.length)
 					.forEach(i -> {
 						DayData dayTime = new DayData();
+						dayTime.setDayNumber(i + 1);
 						dayTime.setStartTime(startTimes.get(i));
 						dayTime.setEndTime(endTimes.get(i));
 						person.getWeekData().get(weekNumberInt).add(dayTime);

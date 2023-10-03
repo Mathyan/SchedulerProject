@@ -19,7 +19,7 @@ import com.mathyan.controller.EditPersonWindowClosedListener;
  * <p>
  * The window frame contains the toolbar and the main panel.
  */
-public class WindowFrame extends JFrame{
+public class WindowFrame extends JFrame {
     private ToolBar toolBar;
     private MainPanel mainPanel;
     private transient EditPersonWindowClosedListener editPersonWindowClosedListener;
@@ -27,7 +27,7 @@ public class WindowFrame extends JFrame{
     /**
      * Constructs a WindowFrame object.
      */
-    public WindowFrame(){
+    public WindowFrame() {
         super();
         initialize();
         addToolBar();
@@ -63,7 +63,6 @@ public class WindowFrame extends JFrame{
         mainPanel.setPreferredSize(new Dimension(1000, 600));
         this.add(mainPanel, BorderLayout.CENTER);
     }
-
 
     /**
      * Passes the button event listener for other components to use.
@@ -112,7 +111,7 @@ public class WindowFrame extends JFrame{
      */
     public void openEditPersonMenu(List<Person> persons, int currentWeek) {
         setFocusableWindowState(false);
-    
+
         EditPersonWindow editPersonWindow = new EditPersonWindow(this, persons, currentWeek);
         editPersonWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         editPersonWindow.addWindowListener(new WindowAdapter() {
@@ -120,22 +119,27 @@ public class WindowFrame extends JFrame{
             public void windowClosed(WindowEvent e) {
                 setFocusableWindowState(true);
                 if (editPersonWindowClosedListener != null) {
-                editPersonWindowClosedListener.onEditPersonWindowClosed();
-                System.out.println("Window closed");
-            }
+                    editPersonWindowClosedListener.onEditPersonWindowClosed();
+                    System.out.println("Window closed");
+                }
             }
         });
     }
 
+    /**
+     * Sets the edit person window closed listener.
+     *
+     * @param listener the listener
+     */
+    public void setEditPersonWindowClosedListener(EditPersonWindowClosedListener listener) {
+        this.editPersonWindowClosedListener = listener;
+    }
 
+    /**
+     * Removes the edit person window closed listener.
+     */
+    public void removeEditPersonWindowClosedListener() {
+        this.editPersonWindowClosedListener = null;
+    }
 
-public void setEditPersonWindowClosedListener(EditPersonWindowClosedListener listener) {
-    this.editPersonWindowClosedListener = listener;
 }
-
-public void removeEditPersonWindowClosedListener() {
-    this.editPersonWindowClosedListener = null;
-}
-
-}
-

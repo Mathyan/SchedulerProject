@@ -1,6 +1,8 @@
 package com.mathyan.controller;
 
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 
 /**
  * This class represents an update event.
@@ -10,6 +12,7 @@ import java.util.EventObject;
 public class UpdateEvent extends EventObject{
     private Integer week;
     private String[][] tableData;
+    private ArrayList<Integer> weekList;
 
     /**
      * Constructs an UpdateEvent object with the given source, week and table data.
@@ -17,9 +20,11 @@ public class UpdateEvent extends EventObject{
      * @param source    the source of the event
      * @param week      the week number
      * @param tableData the table data
+     * @param weekList2
      */
-    public UpdateEvent(Object source, Integer week, String[][] tableData) {
+    public UpdateEvent(Object source, Integer week, String[][] tableData, List<Integer> weekList) {
         super(source);
+        this.weekList = new ArrayList<>(weekList);
         this.week = week;
         this.tableData = tableData;
     }
@@ -42,5 +47,23 @@ public class UpdateEvent extends EventObject{
 
     public String[][] getTableData() {
         return tableData;
+    }
+
+    /**
+     * Gets the week list.
+     *
+     * @return the week list
+     */
+    public List<Integer> getWeekList() {
+        return weekList;
+    }
+
+    /**
+     * Sets the week list.
+     *
+     * @param weekList the week list
+     */
+    public void setWeekList(List<Integer> weekList) {
+        this.weekList = (ArrayList<Integer>) weekList;
     }
 }

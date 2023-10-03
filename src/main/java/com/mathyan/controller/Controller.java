@@ -95,7 +95,7 @@ public class Controller implements EditPersonWindowClosedListener{
      * 
      */
     public void updateWeekList() {
-        weekList = model.getWeekList();
+        weekList = model.updateWeekList();
         view.updateWeekList(weekList);
     }
 
