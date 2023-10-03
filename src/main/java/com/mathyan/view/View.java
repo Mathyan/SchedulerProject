@@ -1,6 +1,6 @@
 package com.mathyan.view;
 
-
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -64,7 +64,7 @@ public class View {
         int response = fileChooser.showSaveDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            try(BufferedWriter writer = new BufferedWriter(new FileWriter(selectedFile))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(selectedFile))) {
                 writer.write(e.getJson());
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -82,7 +82,17 @@ public class View {
         int response = fileChooser.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            e.setFile(selectedFile);
+            try (BufferedReader reader = new BufferedReader(new java.io.FileReader(selectedFile))) {
+                StringBuilder sb = new StringBuilder();
+                String line = reader.readLine();
+                while (line != null) {
+                    sb.append(line);
+                    line = reader.readLine();
+                }
+                e.setJson(sb.toString());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 

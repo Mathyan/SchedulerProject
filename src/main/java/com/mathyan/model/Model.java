@@ -2,7 +2,6 @@ package com.mathyan.model;
 
 import java.util.*;
 
-import com.mathyan.controller.ButtonEvent;
 import com.mathyan.controller.FileEvent;
 import com.mathyan.controller.UpdateEvent;
 import com.mathyan.controller.UpdateEventListener;
@@ -88,6 +87,10 @@ public class Model {
 	 */
 	public void openFile(FileEvent e) {
 		persons = DataManipulation.openFile(e);
+        persons.forEach(Person::testToString);
+		int minWeek = DataManipulation.getMinWeek(persons);
+		setCurrentWeek(minWeek);
+		System.out.println("minWeek: " + minWeek);
 		fireUpdateEvent();
 	}
 
@@ -109,12 +112,19 @@ public class Model {
 	}
 
 
+	/**
+	 * Moves to the previous week.
+	 */
 	public void previousWeek() {
 		currentWeek--;
 		fireUpdateEvent();
 	}
 
-
+	/**
+	 * Sets the current week.
+	 * <p>
+	 * @param currentWeek the current week
+	 */
 	public void setCurrentWeek(int currentWeek) {
 		this.currentWeek = currentWeek;
 	}

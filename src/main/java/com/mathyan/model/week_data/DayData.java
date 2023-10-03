@@ -222,10 +222,9 @@ public class DayData implements Serializable {
      * @return string representation of day data object
      */
     public String toTableString() {
-
         int hours = (int) durationOfWork.toHours();
         String hoursString = String.format("%02d", hours);
-        return String.format("%-6s%-6s%-3s%", localDateTimeToString(startTime),
+        return String.format("%-6s%-6s%-3s", localDateTimeToString(startTime),
                 localDateTimeToString(endTime), hoursString);
     }
 }

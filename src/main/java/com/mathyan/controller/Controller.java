@@ -23,7 +23,7 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
-        this.currentWeek = 00;
+        this.currentWeek = 1;
         model.setCurrentWeek(currentWeek);
         view.setCurrentWeek(currentWeek);
     }

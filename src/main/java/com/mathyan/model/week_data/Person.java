@@ -117,5 +117,18 @@ public class Person implements Serializable {
         this.weekData = weekData;
     }
 
+    /**
+     * Test to string.
+     */
+    public void testToString() {
+        System.out.println("Name: " + name + " Surname: " + surname + " ID: " + id);
+        for (Map.Entry<Integer, ArrayList<DayData>> entry : weekData.entrySet()) {
+            System.out.println("Week: " + entry.getKey());
+            for (DayData dayData : entry.getValue()) {
+                System.out.println(dayData.toTableString());
+            }
+        }
+    }
+
 
 }

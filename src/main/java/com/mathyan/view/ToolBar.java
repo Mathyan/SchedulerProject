@@ -5,7 +5,6 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import java.awt.image.ImageObserver;
 
-import com.mathyan.controller.ButtonEvent;
 import com.mathyan.controller.ButtonEventListener;
 import com.mathyan.controller.FileEvent;
 

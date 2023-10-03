@@ -3,6 +3,14 @@ package com.mathyan.controller;
 import java.io.File;
 import java.util.EventObject;
 
+/**
+ * This class represents an event that is fired when a file is opened or saved.
+ * <p>
+ * The source of the event is the button that was pressed.
+ * The file name is the name of the file that was opened or saved.
+ * The file is the file that was opened or saved.
+ * The json is the json that was opened or saved.
+ */
 public class FileEvent extends EventObject{
     private String fileName;
     private File file;
