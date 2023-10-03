@@ -5,12 +5,10 @@ import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class ScheduleTable extends JTable {
     private static String[] columnNames = {
-        "Name", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            "Name", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
     };
     private String[][] tableData;
     private Integer week;
@@ -22,17 +20,18 @@ public class ScheduleTable extends JTable {
         this.setPreferredSize(new Dimension(FontWidth.getFontWidth() * 8, 600));
         this.setRowHeight(20);
 
-        // Set a custom cell renderer only for the first column (Name)
-        getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                    boolean hasFocus, int row, int column) {
-                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                int width = FontWidth.getFontWidth();
-                table.getColumnModel().getColumn(column).setPreferredWidth(width);
-                return c;
-            }
-        });
+        for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
+            getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                        boolean hasFocus, int row, int column) {
+                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    int width = FontWidth.getFontWidth();
+                    table.getColumnModel().getColumn(column).setPreferredWidth(width);
+                    return c;
+                }
+            });
+        }
     }
 
     public void updateTableData(String[][] tableData, Integer week) {

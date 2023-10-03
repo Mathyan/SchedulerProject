@@ -7,8 +7,6 @@ import javax.swing.JTable;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainPanel extends JPanel {
     JScrollPane scrollPane;
