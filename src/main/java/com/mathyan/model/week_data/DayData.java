@@ -2,7 +2,7 @@ package com.mathyan.model.week_data;
 
 import java.io.Serializable;
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * This class represents the data for a single day in a week.
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * The start time and end time are mutually exclusive. If one is set, the other
  * is calculated from it. If both are set, the duration of work is calculated
  * from them.
- * The start time and end time are stored as LocalDateTime objects. The duration
+ * The start time and end time are stored as LocalTime objects. The duration
  * of work is stored as a Duration object.
  * This class implements the Serializable interface so that it can be
  * serialized and deserialized.
@@ -28,9 +28,9 @@ public class DayData implements Serializable {
     /**
      * The start time of the work day.
      * <p>
-     * All points in time are LocalDateTime objects.
+     * All points in time are LocalTime objects.
      */
-    private LocalDateTime startTime;
+    private LocalTime startTime;
 
     /**
      * The end time of the work day.
@@ -38,7 +38,7 @@ public class DayData implements Serializable {
      * 
      * @see #getStartTime()
      */
-    private LocalDateTime endTime;
+    private LocalTime endTime;
 
     /**
      * The duration of work on the day.
@@ -58,8 +58,8 @@ public class DayData implements Serializable {
      * @param startTime the start time of the day
      * @param endTime   the end time of the day
      */
-    public DayData(Integer dayNumber, LocalDateTime startTime,
-            LocalDateTime endTime) {
+    public DayData(Integer dayNumber, LocalTime startTime,
+            LocalTime endTime) {
         this.dayNumber = dayNumber;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -84,12 +84,12 @@ public class DayData implements Serializable {
     /**
      * Gets the start time of the work day.
      * <p>
-     * All points in time are LocalDateTime objects.
+     * All points in time are LocalTime objects.
      * <p>
      * 
      * @return the start time of the work day
      */
-    public LocalDateTime getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
@@ -97,7 +97,7 @@ public class DayData implements Serializable {
      * @return the end time of the work day
      * @see #getStartTime()
      */
-    public LocalDateTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
@@ -134,7 +134,7 @@ public class DayData implements Serializable {
      * @see #getStartTime()
      * @param startTime the start time of the work day
      */
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
         if (endTime != null) {
             this.durationOfWork = calculateDurationOfWork(startTime, endTime);
@@ -151,7 +151,7 @@ public class DayData implements Serializable {
      * @see #getStartTime()
      * @param endTime the end time of the work day
      */
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
         if (startTime != null) {
             this.durationOfWork = calculateDurationOfWork(startTime, endTime);
@@ -200,20 +200,20 @@ public class DayData implements Serializable {
      * @param endTime   the end time of the work day
      * @return the duration of work on the day
      */
-    private Duration calculateDurationOfWork(LocalDateTime startTime,
-            LocalDateTime endTime) {
+    private Duration calculateDurationOfWork(LocalTime startTime,
+            LocalTime endTime) {
         return Duration.between(startTime, endTime);
     }
 
     /**
-     * Returns a string representation of LocalDateTime object
+     * Returns a string representation of LocalTime object
      * in the format HH:MM.
      *
-     * @return string representation of LocalDateTime object
+     * @return string representation of LocalTime object
      */
-    private String localDateTimeToString(LocalDateTime localDateTime) {
-        return String.format("%02d:%02d", localDateTime.getHour(),
-                localDateTime.getMinute());
+    private String LocalTimeToString(LocalTime LocalTime) {
+        return String.format("%02d:%02d", LocalTime.getHour(),
+                LocalTime.getMinute());
     }
 
     /**
@@ -224,7 +224,7 @@ public class DayData implements Serializable {
     public String toTableString() {
         int hours = (int) durationOfWork.toHours();
         String hoursString = String.format("%02d", hours);
-        return String.format("%-6s%-6s%-3s", localDateTimeToString(startTime),
-                localDateTimeToString(endTime), hoursString);
+        return String.format("%-6s%-6s%-3s", LocalTimeToString(startTime),
+                LocalTimeToString(endTime), hoursString);
     }
 }

@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import com.mathyan.model.week_data.Person;
@@ -284,9 +284,9 @@ public class EditPersonWindow extends JDialog {
 		String surname = surnameTextField.getText().equals("not mandatory delete") ? null : surnameTextField.getText();
 		int weekNumberInt = Integer.parseInt(weekNumberTextField.getText());
 
-		List<LocalDateTime> startTimes = new ArrayList<>();
-		List<LocalDateTime> endTimes = new ArrayList<>();
 		List<String> errors = new ArrayList<>();
+		List<LocalTime> startTimes = new ArrayList<>();
+		List<LocalTime> endTimes = new ArrayList<>();
 
 		IntStream.range(0, dayTimeTextFields.length)
 				.forEach(i -> {
@@ -295,7 +295,7 @@ public class EditPersonWindow extends JDialog {
 					if (!isValidTimeFormat(startTime) || !isValidTimeFormat(endTime)) {
 						errors.add("Invalid time format for day " + (i + 1) + ".");
 					} else {
-						LocalDateTime[] times = parseTimes(startTime, endTime);
+						LocalTime[] times = parseTimes(startTime, endTime);
 						startTimes.add(times[0]);
 						endTimes.add(times[1]);
 					}
@@ -362,8 +362,8 @@ public class EditPersonWindow extends JDialog {
 	 * @param startTimes     the start times for each day of the week
 	 * @param endTimes       the end times for each day of the week
 	 */
-	private void handlePersonData(String name, String surname, int weekNumberInt, List<LocalDateTime> startTimes,
-			List<LocalDateTime> endTimes) {
+	private void handlePersonData(String name, String surname, int weekNumberInt, List<LocalTime> startTimes,
+			List<LocalTime> endTimes) {
 		Person person = findOrCreatePerson(name, surname);
 		updatePersonData(person, weekNumberInt, startTimes, endTimes);
 	}
@@ -397,8 +397,8 @@ public class EditPersonWindow extends JDialog {
 	 * @param startTimes     the start times for each day of the week
 	 * @param endTimes       the end times for each day of the week
 	 */
-	private void updatePersonData(Person person, int weekNumberInt, List<LocalDateTime> startTimes,
-			List<LocalDateTime> endTimes) {
+	private void updatePersonData(Person person, int weekNumberInt, List<LocalTime> startTimes,
+			List<LocalTime> endTimes) {
 		if (!person.getWeekData().containsKey(weekNumberInt)) {
 			person.getWeekData().put(weekNumberInt, new ArrayList<>());
 		}
@@ -418,12 +418,14 @@ public class EditPersonWindow extends JDialog {
 	 * @param endTime   the end time for the specified day of the week
 	 * @return the list of times
 	 */
-	private LocalDateTime[] parseTimes(String startTime, String endTime) {
-		LocalDateTime[] times = new LocalDateTime[2];
-		times[0] = LocalDateTime.parse(startTime, DateTimeFormatter.ofPattern(TIME_FORMAT));
-		times[1] = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern(TIME_FORMAT));
+	private LocalTime[] parseTimes(String startTime, String endTime) {
+		LocalTime[] times = new LocalTime[2];
+		System.out.println(startTime);
+		System.out.println(endTime);
+		times[0] = LocalTime.parse(startTime, DateTimeFormatter.ofPattern(TIME_FORMAT));
+		times[1] = LocalTime.parse(endTime, DateTimeFormatter.ofPattern(TIME_FORMAT));
 		if (times[1].isBefore(times[0])) {
-			times[1] = times[1].plusDays(1);
+			times[1] = times[1].plusHours(24);
 		}
 		return times;
 	}

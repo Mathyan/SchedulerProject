@@ -2,7 +2,7 @@ package com.mathyan.model;
 
 import java.lang.reflect.Type;
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 import com.google.gson.Gson;
@@ -155,7 +155,7 @@ public class DataManipulation {
      */
     public static String convertDataToJson(List<Person> persons) {
         GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
+        builder.registerTypeAdapter(LocalTime.class, new LocalTimeAdapter());
         builder.registerTypeAdapter(Duration.class, new DurationAdapter());
         Gson gson = builder.create();
         return gson.toJson(persons);
@@ -171,7 +171,7 @@ public class DataManipulation {
      */
     public static List<Person> convertJsonToData(String json) {
         GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter());
+        builder.registerTypeAdapter(LocalTime.class, new LocalTimeAdapter());
         builder.registerTypeAdapter(Duration.class, new DurationAdapter());
         Gson gson = builder.create();
         Type personListType = new TypeToken<ArrayList<Person>>() {}.getType();
