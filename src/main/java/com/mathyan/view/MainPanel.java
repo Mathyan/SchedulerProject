@@ -15,6 +15,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.List;
 
 /**
  * This class represents the main panel of the application.
@@ -29,6 +30,8 @@ public class MainPanel extends JPanel {
     private JButton nextWeekButton;
     private JButton editScheduleButton;
 
+    private List<Integer> weekList;
+
     /**
      * Constructs a MainPanel object.
      */
@@ -41,7 +44,6 @@ public class MainPanel extends JPanel {
         this.revalidate();
         this.repaint();
     }
-
 
     /**
      * Initializes the schedule table.
@@ -62,7 +64,9 @@ public class MainPanel extends JPanel {
     private void initializeButtons() {
         weekLabel = new JLabel("Week: " + scheduleTable.getWeek() + " ");
         previousWeekButton = new JButton("Previous Week");
+        previousWeekButton.setEnabled(false);
         nextWeekButton = new JButton("Next Week");
+        nextWeekButton.setEnabled(false);
         editScheduleButton = new JButton("Edit Schedule");
     }
 
@@ -153,7 +157,11 @@ public class MainPanel extends JPanel {
         this.repaint();
     }
 
-
+    /**
+     * Displays the current week number.
+     * 
+     * @param currentWeek the current week
+     */
     public void setCurrentWeek(int currentWeek) {
         scheduleTable.setCurrentWeek(currentWeek);
         weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
@@ -161,11 +169,49 @@ public class MainPanel extends JPanel {
         this.repaint();
     }
 
-
+    /**
+     * Updates the table.
+     *
+     * @param e the update event
+     */
     public void updateTable(UpdateEvent e) {
         scheduleTable.updateTableData(e.getTableData(), e.getWeek());
         weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
         this.revalidate();
         this.repaint();
+        scheduleTable.revalidate();
+        scheduleTable.repaint();
+        scrollPane.revalidate();
+        scrollPane.repaint();
+    }
+
+    /**
+     * Checks if buttons are out of bounds.
+     */
+    public void checkButtons() {
+        previousWeekButton.setEnabled(!scheduleTable.getWeek().equals(weekList.get(0)));
+        nextWeekButton.setEnabled(!scheduleTable.getWeek().equals(weekList.get(weekList.size() - 1)));
+    }
+
+    /**
+     * Updates the week list.
+     *
+     * @param weekList the week list
+     */
+    public void updateWeekList(List<Integer> weekList) {
+        this.weekList = weekList;
+    }
+
+    /**
+     * Toggles the table editable.
+     */
+    public void toggleTableEditable() {
+        if(scheduleTable.isEditable()) {
+            scheduleTable.setEditable(false);
+            editScheduleButton.setText("Edit Schedule");
+        } else {
+            scheduleTable.setEditable(true);
+            editScheduleButton.setText("Save Schedule");
+        }
     }
 }

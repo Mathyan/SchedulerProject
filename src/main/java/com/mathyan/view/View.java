@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.io.BufferedWriter;
 
 import javax.swing.JFileChooser;
@@ -96,11 +97,38 @@ public class View {
         }
     }
 
+    /**
+     * Sets the current week.
+     *
+     * @param currentWeek the current week
+     */
     public void setCurrentWeek(int currentWeek) {
         this.windowFrame.setCurrentWeek(currentWeek);
     }
 
+    /**
+     * Updates the table.
+     *
+     * @param e the update event
+     */
     public void updateTable(UpdateEvent e) {
         windowFrame.updateTable(e);
+    }
+
+    /**
+     * Updates the week list.
+     *
+     * @param weekList the week list
+     */
+    public void updateWeekList(List<Integer> weekList) {
+        windowFrame.updateWeekList(weekList);
+    }
+
+
+    /**
+     * Toggles the table editable.
+     */
+    public void toggleTableEditable() {
+        windowFrame.toggleTableEditable();
     }
 }

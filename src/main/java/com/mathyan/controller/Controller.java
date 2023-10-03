@@ -1,5 +1,7 @@
 package com.mathyan.controller;
 
+import java.util.List;
+
 import com.mathyan.model.Model;
 import com.mathyan.view.View;
 
@@ -13,7 +15,7 @@ public class Controller {
     private Model model;
     private View view;
     private int currentWeek;
-
+    private List<Integer> weekList;
     /**
      * Constructs a Controller object with the given model and view.
      *
@@ -57,12 +59,14 @@ public class Controller {
                     public void saveFile(FileEvent e) {
                         model.saveFile(e);
                         view.openSaveFileDialog(e);
+                        updateWeekList();
                     }
 
                     @Override
                     public void openFile(FileEvent e) {
                         view.openOpenFileDialog(e);
                         model.openFile(e);
+                        updateWeekList();
                     }
 
                     @Override
@@ -77,11 +81,21 @@ public class Controller {
 
                     @Override
                     public void editWeek(ButtonEvent e) {
+                        view.toggleTableEditable();
                     }
                 });
 
         this.addUpdateEventListener(
                 (UpdateEvent e) -> view.updateTable(e));
+    }
+
+    /**
+     * Updates the current week list.
+     * 
+     */
+    public void updateWeekList() {
+        weekList = model.getWeekList();
+        view.updateWeekList(weekList);
     }
 
     /**

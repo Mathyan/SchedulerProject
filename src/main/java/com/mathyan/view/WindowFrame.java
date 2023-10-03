@@ -2,6 +2,7 @@ package com.mathyan.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -70,11 +71,37 @@ public class WindowFrame extends JFrame{
 
     }
 
+    /**
+     * Sets the current week.
+     *
+     * @param currentWeek the current week
+     */
     public void setCurrentWeek(int currentWeek) {
         mainPanel.setCurrentWeek(currentWeek);
     }
 
+    /**
+     * Updates the table.
+     *
+     * @param e the update event
+     */
     public void updateTable(UpdateEvent e) {
         mainPanel.updateTable(e);
+    }
+
+    /**
+     * Updates the week list.
+     *
+     * @param weekList the week list
+     */
+    public void updateWeekList(List<Integer> weekList) {
+        mainPanel.updateWeekList(weekList);
+    }
+
+    /**
+     * Toggles the table editable.
+     */
+    public void toggleTableEditable() {
+        mainPanel.toggleTableEditable();
     }
 }

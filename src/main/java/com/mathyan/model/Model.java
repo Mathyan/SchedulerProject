@@ -129,5 +129,22 @@ public class Model {
 		this.currentWeek = currentWeek;
 	}
 
+	/**
+	 * Gets valid week numbers from the list of persons.
+	 * @return the current week list
+	 */
+	public List<Integer> getWeekList() {
+		List<Integer> weekList = new ArrayList<>();
+		for (Person person : persons) {
+			for (Integer weekNumber : person.getWeekData().keySet()) {
+				if (!weekList.contains(weekNumber)) {
+					weekList.add(weekNumber);
+				}
+			}
+		}
+		Collections.sort(weekList);
+		return weekList;
+	}
+
 
 }
