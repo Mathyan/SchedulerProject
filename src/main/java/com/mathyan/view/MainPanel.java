@@ -58,11 +58,12 @@ public class MainPanel extends JPanel {
         scheduleTable.getTableHeader().setReorderingAllowed(false);
     }
 
+    private static final String WEEK_LABEL_PREFIX = "Week: ";
     /**
      * Initializes the buttons.
      */
     private void initializeButtons() {
-        weekLabel = new JLabel("Week: " + scheduleTable.getWeek() + " ");
+        weekLabel = new JLabel(WEEK_LABEL_PREFIX + scheduleTable.getWeek() + " ");
         previousWeekButton = new JButton("Previous Week");
         previousWeekButton.setEnabled(false);
         nextWeekButton = new JButton("Next Week");
@@ -152,7 +153,7 @@ public class MainPanel extends JPanel {
      */
     public void updateTableData(String[][] tableData, Integer week) {
         scheduleTable.updateTableData(tableData, week);
-        weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
+        weekLabel.setText(WEEK_LABEL_PREFIX + scheduleTable.getWeek() + " ");
         this.revalidate();
         this.repaint();
     }
@@ -164,7 +165,7 @@ public class MainPanel extends JPanel {
      */
     public void setCurrentWeek(int currentWeek) {
         scheduleTable.setCurrentWeek(currentWeek);
-        weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
+        weekLabel.setText(WEEK_LABEL_PREFIX + scheduleTable.getWeek() + " ");
         this.revalidate();
         this.repaint();
     }
@@ -176,7 +177,7 @@ public class MainPanel extends JPanel {
      */
     public void updateTable(UpdateEvent e) {
         scheduleTable.updateTableData(e.getTableData(), e.getWeek());
-        weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
+        weekLabel.setText(WEEK_LABEL_PREFIX + scheduleTable.getWeek() + " ");
         this.revalidate();
         this.repaint();
         scheduleTable.revalidate();
@@ -202,16 +203,4 @@ public class MainPanel extends JPanel {
         this.weekList = weekList;
     }
 
-    /**
-     * Toggles the table editable.
-     */
-    public void toggleTableEditable() {
-        if(scheduleTable.isEditable()) {
-            scheduleTable.setEditable(false);
-            editScheduleButton.setText("Edit Schedule");
-        } else {
-            scheduleTable.setEditable(true);
-            editScheduleButton.setText("Save Schedule");
-        }
-    }
 }

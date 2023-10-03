@@ -14,7 +14,6 @@ public class ScheduleTable extends JTable {
 	private String[][] tableData;
 	private Integer week;
 	private DefaultTableModel tableModel;
-	private boolean isEditable;
 
 	public ScheduleTable(String[][] tableData, Integer week) {
 		tableModel = new DefaultTableModel(tableData, columnNames);
@@ -23,7 +22,6 @@ public class ScheduleTable extends JTable {
 		this.week = week;
 		this.setPreferredSize(new Dimension((FontWidth.getFontWidth() + 20) * 8, 600));
 		this.setRowHeight(40);
-		setEditable(false);
 
 		for (int i = 0; i < getColumnModel().getColumnCount(); i++) {
 			getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
@@ -59,20 +57,5 @@ public class ScheduleTable extends JTable {
 		this.week = currentWeek;
 	}
 
-	public void setEditable(boolean isEditable) {
-		this.isEditable = isEditable;
-		this.setRowSelectionAllowed(isEditable);
-		this.setColumnSelectionAllowed(isEditable);
-		this.setCellSelectionEnabled(isEditable);
-		for (int i = 0; i < tableModel.getRowCount(); i++) {
-			for (int j = 0; j < tableModel.getColumnCount(); j++) {
-				tableModel.isCellEditable(i, j);
-				tableModel.setValueAt(tableModel.getValueAt(i, j), i, j);
-			}
-		}
-	}
 
-	public boolean isEditable() {
-		return isEditable;
-	}
 }

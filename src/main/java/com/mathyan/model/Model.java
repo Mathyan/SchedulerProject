@@ -19,6 +19,7 @@ public class Model {
 	private int currentWeek;
 	private List<Person> persons;
 	private UpdateEventListener updateEventListener;
+	private List<Integer> weekList;
 
 	/**
 	 * Constructs a Model object.
@@ -107,7 +108,7 @@ public class Model {
 	 * Moves to the next week.
 	 */
 	public void nextWeek() {
-		currentWeek++;
+		currentWeek = weekList.get(weekList.indexOf(currentWeek) + 1);
 		fireUpdateEvent();
 	}
 
@@ -116,7 +117,7 @@ public class Model {
 	 * Moves to the previous week.
 	 */
 	public void previousWeek() {
-		currentWeek--;
+		currentWeek = weekList.get(weekList.indexOf(currentWeek) - 1);
 		fireUpdateEvent();
 	}
 
@@ -134,16 +135,17 @@ public class Model {
 	 * @return the current week list
 	 */
 	public List<Integer> getWeekList() {
-		List<Integer> weekList = new ArrayList<>();
+		List<Integer> weekListCalculated = new ArrayList<>();
 		for (Person person : persons) {
 			for (Integer weekNumber : person.getWeekData().keySet()) {
-				if (!weekList.contains(weekNumber)) {
-					weekList.add(weekNumber);
+				if (!weekListCalculated.contains(weekNumber)) {
+					weekListCalculated.add(weekNumber);
 				}
 			}
 		}
-		Collections.sort(weekList);
-		return weekList;
+		this.weekList = weekListCalculated;
+		Collections.sort(weekListCalculated);
+		return weekListCalculated;
 	}
 
 

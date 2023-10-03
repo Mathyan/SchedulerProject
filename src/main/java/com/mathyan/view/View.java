@@ -6,13 +6,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.io.BufferedWriter;
 
 import javax.swing.JFileChooser;
 
 import com.mathyan.controller.ButtonEventListener;
 import com.mathyan.controller.FileEvent;
 import com.mathyan.controller.UpdateEvent;
+import com.mathyan.model.week_data.Person;
 
 /**
  * This class represents the view of the application.
@@ -124,11 +124,14 @@ public class View {
         windowFrame.updateWeekList(weekList);
     }
 
-
     /**
-     * Toggles the table editable.
+     * Opens the edit person menu.
+     *
+     * @param persons the list of persons
      */
-    public void toggleTableEditable() {
-        windowFrame.toggleTableEditable();
+    public void openEditPersonMenu(List<Person> persons) {
+        windowFrame.openEditPersonMenu(persons);
     }
+
+
 }

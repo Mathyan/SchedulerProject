@@ -2,6 +2,8 @@ package com.mathyan.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -9,6 +11,7 @@ import javax.swing.WindowConstants;
 
 import com.mathyan.controller.ButtonEventListener;
 import com.mathyan.controller.UpdateEvent;
+import com.mathyan.model.week_data.Person;
 
 /**
  * This class represents the window frame of the application.
@@ -99,9 +102,23 @@ public class WindowFrame extends JFrame{
     }
 
     /**
-     * Toggles the table editable.
+     * Opens the edit person menu.
+     * <p>
+     * Makes main window unfocusable.
+     *
+     ** @param persons the list of persons
      */
-    public void toggleTableEditable() {
-        mainPanel.toggleTableEditable();
+    public void openEditPersonMenu(List<Person> persons) {
+        setFocusableWindowState(false);
+    
+        EditPersonWindow editPersonWindow = new EditPersonWindow(this, persons);
+        editPersonWindow.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        editPersonWindow.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                setFocusableWindowState(true);
+            }
+        });
     }
+
 }

@@ -81,7 +81,7 @@ public class Controller {
 
                     @Override
                     public void editWeek(ButtonEvent e) {
-                        view.toggleTableEditable();
+                        view.openEditPersonMenu(model.getPersons());
                     }
                 });
 
