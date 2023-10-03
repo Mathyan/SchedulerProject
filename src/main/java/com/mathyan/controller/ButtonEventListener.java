@@ -13,16 +13,16 @@ public interface ButtonEventListener extends EventListener {
 	/**
 	 * This method is called when the save button is pressed.
 	 *
-	 * @param e the button event
+	 * @param fileEvent the button event
 	 */
-	void saveFile(ButtonEvent e);
+	void saveFile(FileEvent fileEvent);
 
 	/**
 	 * This method is called when the open button is pressed.
 	 *
-	 * @param e the button event
+	 * @param fileEvent the button event
 	 */
-	void openFile(ButtonEvent e);
+	void openFile(FileEvent fileEvent);
 
 	/**
 	 * This method is called when the next week button is pressed.

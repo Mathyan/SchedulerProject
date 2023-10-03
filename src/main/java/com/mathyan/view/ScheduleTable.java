@@ -47,4 +47,8 @@ public class ScheduleTable extends JTable {
     public Integer getWeek() {
         return week;
     }
+
+    public void setCurrentWeek(int currentWeek) {
+        this.week = currentWeek;
+    }
 }

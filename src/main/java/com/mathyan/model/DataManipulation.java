@@ -3,6 +3,7 @@ package com.mathyan.model;
 import java.time.Duration;
 import java.util.*;
 
+import com.mathyan.controller.FileEvent;
 import com.mathyan.model.week_data.*;
 
 /**
@@ -89,6 +90,53 @@ public class DataManipulation {
             personWeekData.add(dayData);
         }
         return personWeekData;
+    }
+
+    /**
+     * Gets the data of all persons in a week.
+     * <p>
+     * @see #getPersonWeekData(Person, Integer)
+     * <p>
+     * @param persons the list of persons whose data is to be retrieved
+     * @param weekNumber the week number of the week whose data is to be retrieved
+     * @return the data of all persons in the week
+     */
+    public static List<List<DayData>> getAllPersonsWeekData(List<Person> persons, Integer weekNumber) {
+        List<List<DayData>> allPersonsWeekData = new ArrayList<>();
+        for (Person person : persons) {
+            allPersonsWeekData.add(getPersonWeekData(person, weekNumber));
+        }
+        return allPersonsWeekData;
+    }
+
+    /**
+     * Gets data of all persons in a week in a table format.
+     * <p>
+     * @param persons the list of persons whose data is to be retrieved
+     * @param weekNumber the week number of the week whose data is to be retrieved
+     * @return the data of all persons in the week in a table format
+     */
+    public static String[][] getAllPersonsWeekDataInTableFormat(List<Person> persons, Integer weekNumber) {
+        List<List<DayData>> allPersonsWeekData = getAllPersonsWeekData(persons, weekNumber);
+        String[][] allPersonsWeekDataInTableFormat = new String[allPersonsWeekData.size()][8];
+        for (int i = 0; i < allPersonsWeekData.size(); i++) {
+            allPersonsWeekDataInTableFormat[i][0] = persons.get(i).getName() + " " + persons.get(i).getSurname();
+            for (int j = 1; j < 8; j++) {
+                allPersonsWeekDataInTableFormat[i][j] = allPersonsWeekData.get(i).get(j - 1).toTableString();
+            }
+        }
+        return allPersonsWeekDataInTableFormat;
+    }
+
+    public static String convertDataToJson(List<Person> persons) {
+        return null;
+    }
+
+    public static void saveFile(FileEvent e, List<Person> persons) {
+    }
+
+    public static List<Person> openFile(FileEvent e) {
+        return null;
     }
 
 }

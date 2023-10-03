@@ -5,7 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.border.Border;
+
+import com.mathyan.controller.ButtonEvent;
+import com.mathyan.controller.ButtonEventListener;
+import com.mathyan.controller.UpdateEvent;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,24 +16,36 @@ import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+/**
+ * This class represents the main panel of the application.
+ * <p>
+ * The main panel contains the schedule table and the buttons.
+ */
 public class MainPanel extends JPanel {
-    JScrollPane scrollPane;
-    ScheduleTable scheduleTable;
-    JLabel weekLabel;
-    JButton previousWeekButton;
-    JButton nextWeekButton;
-    JButton editScheduleButton;
+    private JScrollPane scrollPane;
+    private ScheduleTable scheduleTable;
+    private JLabel weekLabel;
+    private JButton previousWeekButton;
+    private JButton nextWeekButton;
+    private JButton editScheduleButton;
 
+    /**
+     * Constructs a MainPanel object.
+     */
     public MainPanel() {
         initializeSchedule();
         initializeButtons();
-        addItemsToPanel();
+        addScheduleToPanel();
         addButtonsToPanel();
         this.setVisible(true);
         this.revalidate();
         this.repaint();
     }
 
+
+    /**
+     * Initializes the schedule table.
+     */
     private void initializeSchedule() {
         this.setVisible(true);
         scheduleTable = new ScheduleTable(new String[10][8], 00);
@@ -51,7 +66,10 @@ public class MainPanel extends JPanel {
         editScheduleButton = new JButton("Edit Schedule");
     }
 
-    private void addItemsToPanel() {
+    /**
+     * Adds the items to the panel.
+     */
+    private void addScheduleToPanel() {
         JPanel centarPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         centarPanel.add(scrollPane);
         this.setLayout(new BorderLayout());
@@ -100,5 +118,54 @@ public class MainPanel extends JPanel {
         northPanel.add(new JLabel("   "), gbc);
 
         this.add(northPanel, BorderLayout.NORTH);
+    }
+
+    /**
+     * Adds the button event listener.
+     *
+     * @param listener the button event listener
+     */
+    public void addButtonEventListener(ButtonEventListener listener) {
+        previousWeekButton.addActionListener(e -> {
+            ButtonEvent event = new ButtonEvent(this, "previousWeek");
+            listener.previousWeek(event);
+        });
+        nextWeekButton.addActionListener(e -> {
+            ButtonEvent event = new ButtonEvent(this, "nextWeek");
+            listener.nextWeek(event);
+        });
+        editScheduleButton.addActionListener(e -> {
+            ButtonEvent event = new ButtonEvent(this, "editSchedule");
+            listener.editWeek(event);
+        });
+    }
+
+    /**
+     * Updates the table data.
+     *
+     * @param tableData the table data
+     * @param week      the week
+     */
+    public void updateTableData(String[][] tableData, Integer week) {
+        scheduleTable.updateTableData(tableData, week);
+        weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
+        this.revalidate();
+        this.repaint();
+    }
+
+
+    public void setCurrentWeek(int currentWeek) {
+        scheduleTable.setCurrentWeek(currentWeek);
+        weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
+        this.revalidate();
+        this.repaint();
+    }
+
+
+    public void updateTable(UpdateEvent e) {
+        scheduleTable.updateTableData(e.getTableData(), e.getWeek());
+        weekLabel.setText("Week: " + scheduleTable.getWeek() + " ");
+        this.revalidate();
+        this.repaint();
     }
 }

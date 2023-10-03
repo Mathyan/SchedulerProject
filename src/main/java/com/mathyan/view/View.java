@@ -1,7 +1,17 @@
 package com.mathyan.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
+
+import javax.swing.JFileChooser;
+
+import com.mathyan.controller.ButtonEventListener;
+import com.mathyan.controller.FileEvent;
+import com.mathyan.controller.UpdateEvent;
 
 /**
  * This class represents the view of the application.
@@ -18,8 +28,6 @@ public class View {
      */
     public View() {
         initialize();
-        addToolBar();
-        addMainPanel();
     }
 
     /**
@@ -27,9 +35,6 @@ public class View {
      */
     private void initialize() {
         windowFrame = new WindowFrame();
-        windowFrame.setTitle("Scheduler Project");
-        windowFrame.setLayout(new BorderLayout());
-        windowFrame.setVisible(true);
     }
 
     /**
@@ -39,21 +44,53 @@ public class View {
         windowFrame.pack();
         windowFrame.repaint();
     }
+
     /**
-     * Adds the toolbar to the window.
+     * Sends the button event listener to the window frame.
+     *
+     * @param listener
      */
-    private void addToolBar() {
-        ToolBar toolBar = new ToolBar();
-        windowFrame.add(toolBar, BorderLayout.NORTH);
+    public void passButtonEventListener(ButtonEventListener listener) {
+        windowFrame.passButtonEventListener(listener);
     }
 
     /**
-     * Adds the main panel to the window.
+     * Opens the save file dialog.
+     *
+     * @param e the file event
      */
-    public void addMainPanel() {
-        MainPanel mainPanel = new MainPanel();
-        mainPanel.setPreferredSize(new Dimension(1000, 600));
-        windowFrame.add(mainPanel, BorderLayout.CENTER);
+    public void openSaveFileDialog(FileEvent e) {
+        JFileChooser fileChooser = new JFileChooser();
+        int response = fileChooser.showSaveDialog(null);
+        if (response == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            try(BufferedWriter writer = new BufferedWriter(new FileWriter(selectedFile))) {
+                writer.write(e.getJson());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
+    /**
+     * Opens the open file dialog.
+     *
+     * @param e the file event
+     */
+    public void openOpenFileDialog(FileEvent e) {
+        JFileChooser fileChooser = new JFileChooser();
+        int response = fileChooser.showOpenDialog(null);
+        if (response == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            e.setFile(selectedFile);
+        }
+    }
+
+    public void setCurrentWeek(int currentWeek) {
+        this.windowFrame.setCurrentWeek(currentWeek);
+    }
+
+    public void updateTable(UpdateEvent e) {
+        windowFrame.updateTable(e);
+    }
 }

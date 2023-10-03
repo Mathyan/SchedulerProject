@@ -7,6 +7,7 @@ import java.awt.image.ImageObserver;
 
 import com.mathyan.controller.ButtonEvent;
 import com.mathyan.controller.ButtonEventListener;
+import com.mathyan.controller.FileEvent;
 
 /**
  * This class represents the toolbar of the application.
@@ -17,15 +18,12 @@ public class ToolBar extends JToolBar {
     private JButton saveFileButton;
     private JButton openFileButton;
 
-    private ButtonEventListener listener;
-    private ButtonEvent event;
     /**
      * Constructs a ToolBar object.
      */
     public ToolBar() {
         super();
         initialize();
-        activate();
     }
 
     /**
@@ -43,27 +41,14 @@ public class ToolBar extends JToolBar {
     }
 
     /**
-     * Activates the toolbar.
-     * Adds action listeners to the buttons.
-     */
-    private void activate() {
-        saveFileButton.addActionListener(e -> {
-            event = new ButtonEvent(this, "save");
-            listener.saveFile(event);
-        });
-        openFileButton.addActionListener(e -> {
-            event = new ButtonEvent(this, "open");
-            listener.openFile(event);
-        });
-    }
-
-    /**
-     * Sets the button event listener.
+     * Adds the button event listener to the buttons.
      *
      * @param listener the button event listener
      */
-    public void setButtonEventListener(ButtonEventListener listener) {
-        this.listener = listener;
+    public void addButtonEventListener(ButtonEventListener listener) {
+        saveFileButton.addActionListener(e -> listener.saveFile(new FileEvent(this, "Save")));
+        openFileButton.addActionListener(e -> listener.openFile(new FileEvent(this, "Open")));
     }
+
 
 }

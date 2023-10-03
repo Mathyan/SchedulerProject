@@ -2,6 +2,10 @@ package com.mathyan.model;
 
 import java.util.*;
 
+import com.mathyan.controller.ButtonEvent;
+import com.mathyan.controller.FileEvent;
+import com.mathyan.controller.UpdateEvent;
+import com.mathyan.controller.UpdateEventListener;
 import com.mathyan.model.week_data.Person;
 
 /**
@@ -13,8 +17,9 @@ import com.mathyan.model.week_data.Person;
  * And to provide methods to access and modify the data.
  */
 public class Model {
-
+    private int currentWeek;
     private List<Person> persons;
+    private UpdateEventListener updateEventListener;
 
     /**
      * Constructs a Model object.
@@ -55,6 +60,57 @@ public class Model {
      */
     public void removePerson(Person person){
         persons.remove(person);
+    }
+
+    /**
+     * Adds an update event listener to the model.
+     *
+     * @param listener
+     */
+    public void addUpdateEventListener(UpdateEventListener listener) {
+        this.updateEventListener = listener;
+    }
+
+    /**
+     * Saves the current data to a file.
+     * <p>
+     * @param e the file event
+     */
+    public void saveFile(FileEvent e) {
+        DataManipulation.saveFile(e, persons);
+        fireUpdateEvent();
+    }
+
+    /**
+     * Opens a file.
+     * <p>
+     * @param e the file event
+     */
+    public void openFile(FileEvent e) {
+        persons = DataManipulation.openFile(e);
+        fireUpdateEvent();
+    }
+
+    /**
+     * Fires an update event.
+     */
+    private void fireUpdateEvent() {
+        if (updateEventListener != null) {
+            updateEventListener.update( new UpdateEvent(this, this.currentWeek, DataManipulation.getAllPersonsWeekDataInTableFormat(persons, currentWeek)));
+        }
+    }
+
+
+    public void nextWeek(ButtonEvent e) {
+    }
+
+
+    public void previousWeek(ButtonEvent e) {
+    }
+
+
+    public void setCurrentWeek(int currentWeek) {
+        this.currentWeek = currentWeek;
     }
 
 
