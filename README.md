@@ -2,6 +2,9 @@
 
 Scheduler project is a desktop application that displays work schedules and events for different teams. This application was developed as a final project to demonstrate knowledge and skills in Java programming and Java Swing user interface. Through this project, concepts such as GUI design, data in JSON format, table manipulation, and user interaction are explored and applied.
 
+## JavaDoc website
+[JavaDoc Website](https://mathyan.github.io/)
+
 ## Getting Started
 
 To get started with this project, clone the repository and open it in your preferred IDE. This project uses Maven for dependency management, so make sure you have Maven installed on your system.
