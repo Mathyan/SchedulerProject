@@ -106,9 +106,6 @@ public class DataManipulation {
     /**
      * Gets the data of all persons in a week.
      * <p>
-     * 
-     * @see #getPersonWeekData(Person, Integer)
-     *      <p>
      * @param persons    the list of persons whose data is to be retrieved
      * @param weekNumber the week number of the week whose data is to be retrieved
      */
