@@ -45,8 +45,8 @@ jobs:
         gh release create "$RELEASE_NAME" \
         --title "Release $RELEASE_NAME" \
         --notes "Release notes for $RELEASE_NAME" \
-        --attach target/*.jar \
-        --attach javadocs.zip \
+        --asset target/*.jar \
+        --asset javadocs.zip \
         --debug
     - name: Push Javadocs to GitHub Pages
       run: |
