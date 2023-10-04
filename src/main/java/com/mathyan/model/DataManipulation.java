@@ -234,4 +234,22 @@ public class DataManipulation {
         return minWeek;
     }
 
+    public static void removePersonName(String nameSurname, List<Person> persons) {
+        if(nameSurname.trim().equals("")){
+            return;
+        }
+        String[] nameSurnameSplit = nameSurname.split(" ");
+        String name = nameSurnameSplit[0];
+        String surname = "";
+        if(nameSurname.length() > 1){
+            surname = nameSurnameSplit[1];
+        }
+        for(Person person : persons){
+            if(person.getName().equals(name) && person.getSurname().equals(surname)){
+                persons.remove(person);
+            }
+        }
+
+    }
+
 }

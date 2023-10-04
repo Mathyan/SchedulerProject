@@ -49,6 +49,10 @@ public class Controller implements EditPersonWindowClosedListener{
         model.addUpdateEventListener(listener);
     }
 
+    public void sendDeletePersonListener(DeletePeronListener listener){
+        view.passDeletePersonListener(listener);
+    }
+
     /**
      * Starts the controller.
      */
@@ -88,6 +92,13 @@ public class Controller implements EditPersonWindowClosedListener{
 
         this.addUpdateEventListener(
                 (UpdateEvent e) -> view.updateTable(e));
+
+        this.sendDeletePersonListener(new DeletePeronListener() {
+            @Override
+            public void deletePerson(DeletePersonEvent e){
+                model.removePersonName(e.getNameSurname());
+            }
+        });
     }
 
     /**

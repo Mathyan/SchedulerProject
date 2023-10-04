@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import com.mathyan.controller.ButtonEventListener;
+import com.mathyan.controller.DeletePeronListener;
 import com.mathyan.controller.UpdateEvent;
 import com.mathyan.model.week_data.Person;
 import com.mathyan.controller.EditPersonWindowClosedListener;
@@ -155,6 +156,10 @@ public class WindowFrame extends JFrame {
      */
     public void removeEditPersonWindowClosedListener() {
         this.editPersonWindowClosedListener = null;
+    }
+
+    public void passDeletePersonListener(DeletePeronListener listener) {
+        mainPanel.passDeletePersonListener(listener);
     }
 
 }

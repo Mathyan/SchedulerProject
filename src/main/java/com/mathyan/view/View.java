@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 
 import com.mathyan.controller.ButtonEventListener;
 import com.mathyan.controller.Controller;
+import com.mathyan.controller.DeletePeronListener;
 import com.mathyan.controller.FileEvent;
 import com.mathyan.controller.UpdateEvent;
 import com.mathyan.model.week_data.Person;
@@ -142,6 +143,10 @@ public class View {
      */
     public void setEditPersonWindowClosedListener(Controller controller) {
         windowFrame.setEditPersonWindowClosedListener(controller);
+    }
+
+    public void passDeletePersonListener(DeletePeronListener listener) {
+        windowFrame.passDeletePersonListener(listener);
     }
 
 

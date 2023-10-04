@@ -159,4 +159,10 @@ public class Model {
 	}
 
 
+    public void removePersonName(String nameSurname) {
+		DataManipulation.removePersonName(nameSurname, persons);
+		fireUpdateEvent();
+    }
+
+
 }

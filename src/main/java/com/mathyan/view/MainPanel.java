@@ -1,6 +1,7 @@
 package com.mathyan.view;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -8,6 +9,8 @@ import javax.swing.JTable;
 
 import com.mathyan.controller.ButtonEvent;
 import com.mathyan.controller.ButtonEventListener;
+import com.mathyan.controller.DeletePeronListener;
+import com.mathyan.controller.DeletePersonEvent;
 import com.mathyan.controller.UpdateEvent;
 
 import java.awt.BorderLayout;
@@ -29,7 +32,8 @@ public class MainPanel extends JPanel {
     private JButton previousWeekButton;
     private JButton nextWeekButton;
     private JButton editScheduleButton;
-
+    private JComboBox<String> availablePersons;
+    private JButton deleteSelectedButton;
     private List<Integer> weekList;
 
     /**
@@ -69,6 +73,8 @@ public class MainPanel extends JPanel {
         nextWeekButton = new JButton("Next Week");
         nextWeekButton.setEnabled(false);
         editScheduleButton = new JButton("Edit Schedule");
+        deleteSelectedButton = new JButton("Delete person");
+        availablePersons = new JComboBox<>();
     }
 
     /**
@@ -114,12 +120,19 @@ public class MainPanel extends JPanel {
         gbc.gridx = 6;
         northPanel.add(new JLabel(" "), gbc);
 
+        gbc.anchor = GridBagConstraints.EAST;
         gbc.gridx = 7;
         gbc.weightx = 0.0;
-        gbc.anchor = GridBagConstraints.EAST;
+        northPanel.add(deleteSelectedButton, gbc);
+
+        availablePersons.setPreferredSize(new Dimension(FontWidth.getFontWidth() + 20, 22));
+        gbc.gridx = 8;
+        northPanel.add(availablePersons,gbc);
+
+        gbc.gridx = 9;
         northPanel.add(editScheduleButton, gbc);
 
-        gbc.gridx = 8;
+        gbc.gridx = 10;
         northPanel.add(new JLabel("   "), gbc);
 
         this.add(northPanel, BorderLayout.NORTH);
@@ -185,6 +198,7 @@ public class MainPanel extends JPanel {
         scheduleTable.repaint();
         scrollPane.revalidate();
         scrollPane.repaint();
+        for
     }
 
     /**
@@ -211,6 +225,16 @@ public class MainPanel extends JPanel {
      */
     public int getCurrentWeek() {
         return scheduleTable.getWeek();
+    }
+
+    public void passDeletePersonListener(DeletePeronListener listener) {
+        deleteSelectedButton.addActionListener(e ->{
+            String selectedPerson = (String) availablePersons.getSelectedItem();
+            DeletePersonEvent event = new DeletePersonEvent(this, selectedPerson);
+            listener.deletePerson(event);
+        }
+        );
+
     }
 
 }
