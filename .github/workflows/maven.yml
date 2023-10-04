@@ -27,24 +27,28 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B javadoc:javadoc --file pom.xml
+      run: mvn -B javadoc:javadoc package --file pom.xml
     - name: Zip Javadocs
       run: zip -r javadocs.zip target/site/apidocs/
-    - name: Create Release and Upload Javadocs
+    - name: Create Release and Upload Javadocs and JAR
       run: |
         export GH_TOKEN=${{ secrets.GH_PAT }}
         
-        # Extract the branch or tag name from github.ref value
         REF_NAME=$(echo "${{ github.ref }}" | sed -e 's/refs\/heads\///' -e 's/refs\/tags\///')
         
-        # Use a naming convention for branch-based releases
         if [[ ${{ github.event_name }} == 'push' ]]; then
           RELEASE_NAME="branch-$REF_NAME-$(date +'%Y%m%d%H%M%S')"
         else
           RELEASE_NAME=$REF_NAME
         fi
-        
-        gh release create "$RELEASE_NAME" javadocs.zip --title "Release $RELEASE_NAME" --notes "Release notes for $RELEASE_NAME"
+
+        JAR_FILE=$(find . -name "*.jar" -type f | grep SNAPSHOT)
+
+        gh release create "$RELEASE_NAME" \
+          --title "Release $RELEASE_NAME" \
+          --notes "Release notes for $RELEASE_NAME" \
+          --attach "$JAR_FILE" \
+          --attach javadocs.zip
     - name: Push Javadocs to GitHub Pages
       run: |
         # Configure Git
@@ -62,4 +66,3 @@ jobs:
         git add .
         git commit -m "Update Javadocs"
         git push
-        
