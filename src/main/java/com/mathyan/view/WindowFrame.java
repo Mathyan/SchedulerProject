@@ -1,12 +1,15 @@
 package com.mathyan.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import com.mathyan.controller.ButtonEventListener;
@@ -32,6 +35,7 @@ public class WindowFrame extends JFrame {
         initialize();
         addToolBar();
         addMainPanel();
+        addFooter();
     }
 
     /**
@@ -62,6 +66,17 @@ public class WindowFrame extends JFrame {
         mainPanel = new MainPanel();
         mainPanel.setPreferredSize(new Dimension(1000, 600));
         this.add(mainPanel, BorderLayout.CENTER);
+    }
+
+    /**
+     * Adds the footer to the window.
+     */
+    private void addFooter() {
+        JPanel footerPanel = new JPanel();
+        footerPanel.setBackground(Color.LIGHT_GRAY);
+        JLabel footerLabel = new JLabel(" ");
+        footerPanel.add(footerLabel);
+        this.add(footerPanel, BorderLayout.SOUTH);
     }
 
     /**

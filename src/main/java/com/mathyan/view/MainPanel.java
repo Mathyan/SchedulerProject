@@ -164,7 +164,6 @@ public class MainPanel extends JPanel {
      * @param currentWeek the current week
      */
     public void setCurrentWeek(int currentWeek) {
-        scheduleTable.setCurrentWeek(currentWeek);
         weekLabel.setText(WEEK_LABEL_PREFIX + scheduleTable.getWeek() + " ");
         this.revalidate();
         this.repaint();
@@ -177,7 +176,9 @@ public class MainPanel extends JPanel {
      */
     public void updateTable(UpdateEvent e) {
         scheduleTable.updateTableData(e.getTableData(), e.getWeek());
-        weekLabel.setText(WEEK_LABEL_PREFIX + scheduleTable.getWeek() + " ");
+        updateWeekList(e.getWeekList());
+        setCurrentWeek(e.getWeek());
+        checkButtons();
         this.revalidate();
         this.repaint();
         scheduleTable.revalidate();

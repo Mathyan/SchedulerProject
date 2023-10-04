@@ -210,27 +210,52 @@ public class EditPersonWindow extends JDialog {
 			Person selectedPerson = persons.get(selectedIndex);
 			nameTextField.setText(selectedPerson.getName());
 			surnameTextField.setText(selectedPerson.getSurname());
-			weekNumberTextField.setText(Integer.toString(currentWeek));
+			if(weekNumberTextField.getText().equals("")) {
+				weekNumberTextField.setText(Integer.toString(currentWeek));
+			} else {
+				try {
+					int weekNumberInt = Integer.parseInt(weekNumberTextField.getText());
+					if (weekNumberInt < 1 || weekNumberInt > 52) {
+						JOptionPane.showMessageDialog(this, "Please enter a valid week number.", ERROR_STRING,
+								JOptionPane.ERROR_MESSAGE);
+						return;
+					} else {
+						currentWeek = weekNumberInt;
+					}
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(this, "Please enter a valid week number.", ERROR_STRING,
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
 			setDayTimeTextFields(selectedPerson);
 		}
 	}
 
 	/**
-	 * Sets the day time text fields for the specified person.
-	 * 
-	 * @param selectedPerson the person to set the day time text fields for
-	 */
-	private void setDayTimeTextFields(Person selectedPerson) {
-		IntStream.range(0, dayTimeTextFields.length)
-				.forEach(i -> {
-					String startTime = selectedPerson.getWeekData().get(currentWeek).get(i).getStartTime()
-							.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
-					String endTime = selectedPerson.getWeekData().get(currentWeek).get(i).getEndTime()
-							.format(DateTimeFormatter.ofPattern(TIME_FORMAT));
-					setStartTime(i, startTime);
-					setEndTime(i, endTime);
-				});
-	}
+ * Sets the day time text fields for the specified person.
+ * 
+ * @param selectedPerson the person to set the day time text fields for
+ */
+private void setDayTimeTextFields(Person selectedPerson) {
+    if (!selectedPerson.getWeekData().containsKey(currentWeek)) {
+        IntStream.range(0, dayTimeTextFields.length)
+                .forEach(i -> {
+                    setStartTime(i, "00:00");
+                    setEndTime(i, "00:00");
+                });
+    } else {
+        IntStream.range(0, dayTimeTextFields.length)
+                .forEach(i -> {
+                    String startTime = selectedPerson.getWeekData().get(currentWeek).get(i).getStartTime()
+                            .format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+                    String endTime = selectedPerson.getWeekData().get(currentWeek).get(i).getEndTime()
+                            .format(DateTimeFormatter.ofPattern(TIME_FORMAT));
+                    setStartTime(i, startTime);
+                    setEndTime(i, endTime);
+                });
+    }
+}
 
 	/**
 	 * Adds a listener to the add person button.
@@ -280,7 +305,7 @@ public class EditPersonWindow extends JDialog {
 		}
 
 		String name = nameTextField.getText();
-		String surname = surnameTextField.getText().equals("not mandatory delete") ? null : surnameTextField.getText();
+		String surname = surnameTextField.getText().equals("not mandatory delete") ?  "": surnameTextField.getText();
 		int weekNumberInt = Integer.parseInt(weekNumberTextField.getText());
 
 		List<String> errors = new ArrayList<>();
@@ -411,6 +436,7 @@ public class EditPersonWindow extends JDialog {
 		} else {
 			IntStream.range(0, dayTimeTextFields.length)
 					.forEach(i -> {
+						person.getWeekData().get(weekNumberInt).get(i).setDayNumber(i + 1);
 						person.getWeekData().get(weekNumberInt).get(i).setStartTime(startTimes.get(i));
 						person.getWeekData().get(weekNumberInt).get(i).setEndTime(endTimes.get(i));
 					});

@@ -96,31 +96,23 @@ public class DataManipulation {
      * 
      * @param person     the person whose data is to be retrieved
      * @param weekNumber the week number of the week whose data is to be retrieved
-     * @return the data of the person in the week
+     * @param personsWithWeekData the list of persons whose data is to be retrieved
      */
-    public static List<DayData> getPersonWeekData(Person person, Integer weekNumber) {
-        List<DayData> personWeekData = new ArrayList<>();
+    public static void getPersonWeekData(Person person, Integer weekNumber, List<Person> personsWithWeekData) {
         if (person.getWeekData().containsKey(weekNumber)) {
-            personWeekData = person.getWeekData().get(weekNumber);
+            personsWithWeekData.add(person);
         }
-        return personWeekData;
     }
     /**
      * Gets the data of all persons in a week.
      * <p>
-     * 
-     * @see #getPersonWeekData(Person, Integer)
-     *      <p>
      * @param persons    the list of persons whose data is to be retrieved
      * @param weekNumber the week number of the week whose data is to be retrieved
-     * @return the data of all persons in the week
      */
-    public static List<List<DayData>> getAllPersonsWeekData(List<Person> persons, Integer weekNumber) {
-        List<List<DayData>> allPersonsWeekData = new ArrayList<>();
+    public static void getAllPersonsWeekData(List<Person> persons, Integer weekNumber, List<Person> personsWithWeekData) {
         for (Person person : persons) {
-            allPersonsWeekData.add(getPersonWeekData(person, weekNumber));
+            getPersonWeekData(person, weekNumber, personsWithWeekData);
         }
-        return allPersonsWeekData;
     }
 
     /**
@@ -132,16 +124,20 @@ public class DataManipulation {
      * @return the data of all persons in the week in a table format
      */
     public static String[][] getAllPersonsWeekDataInTableFormat(List<Person> persons, Integer weekNumber) {
-        List<List<DayData>> allPersonsWeekData = getAllPersonsWeekData(persons, weekNumber);
-        String[][] allPersonsWeekDataInTableFormat = new String[allPersonsWeekData.size()][8];
-        if (!allPersonsWeekData.isEmpty()) { // add null check here
-            for (int i = 0; i < allPersonsWeekData.size(); i++) {
-                allPersonsWeekDataInTableFormat[i][0] = persons.get(i).getName() + " " + persons.get(i).getSurname();
-                for (int j = 1; j < 8; j++) {
-                    allPersonsWeekDataInTableFormat[i][j] = allPersonsWeekData.get(i).get(j - 1).toTableString();
-                }
+        List<Person> personsWithWeekData = new ArrayList<>();
+        getAllPersonsWeekData(persons, weekNumber, personsWithWeekData);
+        String[][] allPersonsWeekDataInTableFormat = new String[personsWithWeekData.size()][];
+        for (int i = 0; i < personsWithWeekData.size(); i++) {
+            Person person = personsWithWeekData.get(i);
+            String[] personWeekDataInTableFormat = new String[9];
+            personWeekDataInTableFormat[0] = person.getName() + person.getSurname();
+            for(int j = 1; j < 8; j++) {
+                personWeekDataInTableFormat[j] = person.getWeekData().get(weekNumber).get(j - 1).toTableString();
             }
+            allPersonsWeekDataInTableFormat[i] = personWeekDataInTableFormat;
         }
+
+
         return allPersonsWeekDataInTableFormat;
     }
 
