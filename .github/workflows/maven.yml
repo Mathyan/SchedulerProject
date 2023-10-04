@@ -45,10 +45,11 @@ jobs:
         JAR_FILE=$(find . -name "*.jar" -type f | grep SNAPSHOT)
 
         gh release create "$RELEASE_NAME" \
-          --title "Release $RELEASE_NAME" \
-          --notes "Release notes for $RELEASE_NAME" \
-          --attach "$JAR_FILE" \
-          --attach javadocs.zip
+        --title "Release $RELEASE_NAME" \
+        --notes "Release notes for $RELEASE_NAME" \
+        --attach "$JAR_FILE" \
+        --attach javadocs.zip \
+        --debug
     - name: Push Javadocs to GitHub Pages
       run: |
         # Configure Git
