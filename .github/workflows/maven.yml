@@ -49,8 +49,7 @@ jobs:
           --title "Release $RELEASE_NAME" \
           --notes "Release notes for $RELEASE_NAME" \
           target/*.jar \
-          javadocs.zip \
-          --debug
+          javadocs.zip
     - name: Push Javadocs to GitHub Pages
       run: |
         # Configure Git
