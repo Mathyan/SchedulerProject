@@ -34,20 +34,23 @@ jobs:
       run: |
         export GH_TOKEN=${{ secrets.GH_PAT }}
         
+        # Extract the branch or tag name from github.ref value
         REF_NAME=$(echo "${{ github.ref }}" | sed -e 's/refs\/heads\///' -e 's/refs\/tags\///')
         
+        # Use a naming convention for branch-based releases
         if [[ ${{ github.event_name }} == 'push' ]]; then
           RELEASE_NAME="branch-$REF_NAME-$(date +'%Y%m%d%H%M%S')"
         else
           RELEASE_NAME=$REF_NAME
         fi
-
+        
+        # Create the release and upload the JAR file and Javadoc ZIP file as assets
         gh release create "$RELEASE_NAME" \
-        --title "Release $RELEASE_NAME" \
-        --notes "Release notes for $RELEASE_NAME" \
-        --asset target/*.jar \
-        --asset javadocs.zip \
-        --debug
+          --title "Release $RELEASE_NAME" \
+          --notes "Release notes for $RELEASE_NAME" \
+          target/*.jar \
+          javadocs.zip \
+          --debug
     - name: Push Javadocs to GitHub Pages
       run: |
         # Configure Git
