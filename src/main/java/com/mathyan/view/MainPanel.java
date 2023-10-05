@@ -18,6 +18,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -198,8 +200,13 @@ public class MainPanel extends JPanel {
         scheduleTable.repaint();
         scrollPane.revalidate();
         scrollPane.repaint();
-        for
+        availablePersons.removeAllItems();
+        for (String[] row : e.getTableData()) {
+            availablePersons.addItem(row[0]);
+        }
+       
     }
+
 
     /**
      * Checks if buttons are out of bounds.
@@ -229,6 +236,9 @@ public class MainPanel extends JPanel {
 
     public void passDeletePersonListener(DeletePeronListener listener) {
         deleteSelectedButton.addActionListener(e ->{
+            if (availablePersons.getItemCount() == 0) {
+                return;
+            }
             String selectedPerson = (String) availablePersons.getSelectedItem();
             DeletePersonEvent event = new DeletePersonEvent(this, selectedPerson);
             listener.deletePerson(event);
