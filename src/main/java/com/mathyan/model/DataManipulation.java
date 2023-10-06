@@ -234,6 +234,12 @@ public class DataManipulation {
         return minWeek;
     }
 
+    /**
+     * Removes person with name and surname from the list of persons.
+     * <p>
+     * @param nameSurname the name and surname of the person to be removed
+     * @param persons the list of persons
+     */
     public static void removePersonName(String nameSurname, List<Person> persons) {
         if(nameSurname.trim().equals("")){
             return;

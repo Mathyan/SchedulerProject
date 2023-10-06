@@ -7,6 +7,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * This class represents the schedule table.
+ * <p>
+ * The schedule table is a JTable that displays the schedule.
+ */
 public class ScheduleTable extends JTable {
 	private static String[] columnNames = {
 			"Name", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"

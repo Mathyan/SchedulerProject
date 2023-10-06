@@ -160,7 +160,13 @@ public class Model {
 		return currentWeek;
 	}
 
-
+	/**
+	 * Removes a person from the list of persons.
+	 * <p>
+	 * If the person is not in the list, the list is not modified.
+	 * <p>
+	 * @param nameSurname the name and surname of the person to be removed
+	 **/
     public void removePersonName(String nameSurname) {
 		DataManipulation.removePersonName(nameSurname, persons);
 		setCurrentWeek(DataManipulation.getMinWeek(persons));
