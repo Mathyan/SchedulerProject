@@ -99,9 +99,11 @@ public class Model {
 	 * Fires an update event.
 	 */
 	public void fireUpdateEvent() {
+		if (updateEventListener != null && !persons.isEmpty()) {
 		updateWeekList();
-		if (updateEventListener != null) {
 			updateEventListener.update( new UpdateEvent(this, this.currentWeek, DataManipulation.getAllPersonsWeekDataInTableFormat(persons, currentWeek), this.weekList));
+		} else if (updateEventListener != null && persons.isEmpty()) {
+			updateEventListener.update(new UpdateEvent(this, 0, new String[1][8], new ArrayList<>(Collections.singletonList(0))));
 		}
 	}
 
@@ -158,9 +160,16 @@ public class Model {
 		return currentWeek;
 	}
 
-
+	/**
+	 * Removes a person from the list of persons.
+	 * <p>
+	 * If the person is not in the list, the list is not modified.
+	 * <p>
+	 * @param nameSurname the name and surname of the person to be removed
+	 **/
     public void removePersonName(String nameSurname) {
 		DataManipulation.removePersonName(nameSurname, persons);
+		setCurrentWeek(DataManipulation.getMinWeek(persons));
 		fireUpdateEvent();
     }
 

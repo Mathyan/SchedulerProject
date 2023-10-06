@@ -130,7 +130,7 @@ public class DataManipulation {
         for (int i = 0; i < personsWithWeekData.size(); i++) {
             Person person = personsWithWeekData.get(i);
             String[] personWeekDataInTableFormat = new String[9];
-            personWeekDataInTableFormat[0] = person.getName() + person.getSurname();
+            personWeekDataInTableFormat[0] = person.getName() + " " +  person.getSurname();
             for(int j = 1; j < 8; j++) {
                 personWeekDataInTableFormat[j] = person.getWeekData().get(weekNumber).get(j - 1).toTableString();
             }
@@ -234,22 +234,31 @@ public class DataManipulation {
         return minWeek;
     }
 
+    /**
+     * Removes person with name and surname from the list of persons.
+     * <p>
+     * @param nameSurname the name and surname of the person to be removed
+     * @param persons the list of persons
+     */
     public static void removePersonName(String nameSurname, List<Person> persons) {
         if(nameSurname.trim().equals("")){
             return;
         }
+        Person personToRemove = null;
         String[] nameSurnameSplit = nameSurname.split(" ");
         String name = nameSurnameSplit[0];
         String surname = "";
-        if(nameSurname.length() > 1){
+        if(nameSurnameSplit.length > 1){
             surname = nameSurnameSplit[1];
         }
         for(Person person : persons){
             if(person.getName().equals(name) && person.getSurname().equals(surname)){
-                persons.remove(person);
+                personToRemove = person;
             }
         }
-
+        if(personToRemove != null){
+            persons.remove(personToRemove);
+        }
     }
 
 }
